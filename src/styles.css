@@ -46,11 +46,14 @@
     position: sticky;
     top: 0;
     z-index: 0;
+    height: 100svh;
     min-height: 100svh;
     display: flex;
     align-items: center;
     filter: blur(var(--hero-blur, 0px));
-    transition: filter 120ms linear;
+    transform: scale(var(--hero-scale, 1));
+    opacity: var(--hero-opacity, 1);
+    transition: filter 120ms linear, transform 120ms linear, opacity 120ms linear;
     background-image:
       linear-gradient(90deg, rgba(9, 9, 11, 0.99) 0%, rgba(9, 9, 11, 0.94) 29%, rgba(9, 9, 11, 0.62) 54%, rgba(9, 9, 11, 0.12) 100%),
       url('/images/11st.jpg');
@@ -82,13 +85,32 @@
   .hero-project-stage {
     position: relative;
     isolation: isolate;
+    min-height: 200svh;
   }
 
-  .hero-project-stage #projects {
-    position: relative;
+  .hero-project-stage .home-layer {
+    position: sticky;
+    top: 0;
     z-index: 1;
+    height: 100svh;
+  }
+
+  .hero-project-stage .projects-layer {
+    position: relative;
+    z-index: 2;
+    min-height: 100svh;
     background: var(--bg-dark);
-    box-shadow: 0 -30px 70px rgba(9, 9, 11, 0.45);
+    box-shadow: 0 -30px 70px rgba(9, 9, 11, 0.45), 0 -1px 0 rgba(52, 211, 153, 0.08);
+    isolation: isolate;
+    margin-top: 0;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .coverflow-container {
+    opacity: calc(0.45 + (var(--project-reveal, 0) * 0.55));
+    transform: translateY(calc((1 - var(--project-reveal, 0)) * 28px));
+    transition: opacity 120ms linear, transform 120ms linear;
   }
 
   .project-card-surface {
@@ -395,6 +417,7 @@
   cursor: grab;
   display: flex;
   align-items: center;
+  transform-origin: center top;
   justify-content: center;
   overflow: hidden;
   mask-image: linear-gradient(to right,
@@ -450,8 +473,9 @@
   position: relative;
   transform-style: preserve-3d;
   overflow: visible;
-  animation: project-orbit 60s linear infinite;
-  animation-play-state: running;
+  animation: none;
+  transform: rotateY(0deg);
+  will-change: transform;
 }
 
 .coverflow-track.is-paused,
@@ -476,6 +500,10 @@
   -webkit-backface-visibility: hidden;
   cursor: pointer;
   user-select: none;
+  opacity: var(--card-opacity, 1);
+  filter: brightness(var(--card-brightness, 1));
+  transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity)))) translateZ(calc(420px * var(--project-reveal, 0))) scale(var(--card-scale, 1));
+  will-change: transform, filter, opacity;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -799,7 +827,7 @@
   .coverflow-card {
     width: 140px;
     height: 195px;
-    transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity)))) translateZ(320px);
+    transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity)))) translateZ(calc(320px * var(--project-reveal, 0))) scale(var(--card-scale, 1));
   }
 
   .coverflow-container {

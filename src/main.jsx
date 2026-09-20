@@ -501,23 +501,29 @@ function HeroSection({ onOpenChat, onSelectProject }) {
   const heroRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    let frameId = 0;
+
+    const updateHero = () => {
       if (!heroRef.current) return;
+      const scrollProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 1);
       const shift = Math.min(window.scrollY * 0.08, 36);
       heroRef.current.style.setProperty('--hero-shift', `${shift}px`);
-      heroRef.current.style.setProperty('--hero-fade', `${Math.min(window.scrollY / 700, 0.45)}`);
-      heroRef.current.style.setProperty('--hero-blur', `${Math.min(window.scrollY / 180, 5)}px`);
+      heroRef.current.style.setProperty('--hero-fade', `${scrollProgress * 0.65}`);
+      heroRef.current.style.setProperty('--hero-blur', `${scrollProgress * 10}px`);
+      heroRef.current.style.setProperty('--hero-scale', `${1 - scrollProgress * 0.05}`);
+      heroRef.current.style.setProperty('--hero-opacity', `${1 - scrollProgress * 0.5}`);
       heroRef.current.style.setProperty('--hero-content-opacity', `${Math.max(0.1, 1 - window.scrollY / 420)}`);
       heroRef.current.style.setProperty('--hero-content-shift', `${Math.min(window.scrollY * -0.12, -42)}px`);
+      frameId = requestAnimationFrame(updateHero);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    frameId = requestAnimationFrame(updateHero);
+    return () => cancelAnimationFrame(frameId);
   }, []);
 
   return (
-    <section ref={heroRef} id="top" className="hero-section relative pt-28 sm:pt-36 pb-20 lg:pb-32 overflow-hidden">
+    <section ref={heroRef} id="top" className="home-layer hero-section relative pt-28 sm:pt-36 pb-20 lg:pb-32 overflow-hidden">
       {/* Background Ambient Lights */}
       <div className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[500px] glow-emerald opacity-60 blur-3xl -z-10" />
       <div className="pointer-events-none absolute top-40 right-10 w-[400px] h-[400px] glow-subtle opacity-50 blur-2xl -z-10" />
@@ -546,13 +552,13 @@ function HeroSection({ onOpenChat, onSelectProject }) {
 
             {/* Team Identity Meta Line */}
             <div className="flex flex-wrap items-center gap-x-2 text-xs sm:text-sm text-zinc-400">
-              <span className="font-semibold text-zinc-200">AC: Apex of Champions</span>
+              <span className="font-semibold text-zinc-200">Joshua Anderson Padilla</span>
               <span>·</span>
-              <span>Full Stack Development Team</span>
+              <span>Full Stack Developer</span>
               <span>·</span>
               <span className="flex items-center gap-1 text-zinc-300">
                 <MapPin size={13} className="text-emerald-400" />
-                Isulan, Sultan Kudarat
+                svgBulacan, Philippines
               </span>
             </div>
 
@@ -674,9 +680,56 @@ const carouselProjects = [...projectsData, ...projectsData];
 
 function ProjectsCoverflow({ onSelectProject }) {
   const [isPaused, setIsPaused] = useState(false);
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
+  const cardRefs = useRef([]);
+  const orbitRotationRef = useRef(0);
+  const previousFrameTimeRef = useRef(0);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    let frameId = 0;
+
+    const updateCoverflow = (timestamp) => {
+      const section = sectionRef.current;
+      const track = trackRef.current;
+      if (!section || !track) return;
+
+      if (previousFrameTimeRef.current) {
+        const elapsed = timestamp - previousFrameTimeRef.current;
+        if (!isPaused) orbitRotationRef.current += elapsed * 0.006;
+      }
+      previousFrameTimeRef.current = timestamp;
+
+      const revealProgress = Math.min(
+        Math.max(window.scrollY / (window.innerHeight * 0.85), 0),
+        1
+      );
+      const rotation = -revealProgress * 150 + orbitRotationRef.current;
+      section.style.setProperty('--project-reveal', revealProgress);
+      track.style.transform = `rotateY(${rotation}deg)`;
+
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        const baseAngle = (index / carouselProjects.length) * 360;
+        const rawAngle = baseAngle + rotation;
+        const angle = ((rawAngle + 180) % 360 + 360) % 360 - 180;
+        const frontness = Math.max(0, Math.cos((angle * Math.PI) / 180));
+        card.style.setProperty('--card-scale', `${0.78 + frontness * 0.22}`);
+        card.style.setProperty('--card-opacity', `${0.35 + frontness * 0.65}`);
+        card.style.setProperty('--card-brightness', `${0.48 + frontness * 0.52}`);
+        card.style.setProperty('--card-blur', '0px');
+      });
+
+      frameId = requestAnimationFrame(updateCoverflow);
+    };
+
+    frameId = requestAnimationFrame(updateCoverflow);
+    return () => cancelAnimationFrame(frameId);
+  }, [isPaused]);
 
   return (
-    <section id="projects" className="py-20 lg:py-28 relative overflow-hidden">
+    <section ref={sectionRef} id="projects" className="projects-layer py-20 lg:py-28 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         <div className="flex items-end justify-between">
           <div>
@@ -708,7 +761,7 @@ function ProjectsCoverflow({ onSelectProject }) {
         className="coverflow-container w-full max-w-7xl mx-auto py-6"
         style={{ height: '540px' }}
       >
-        <div className={`coverflow-track ${isPaused ? 'is-paused' : ''}`}>
+        <div ref={trackRef} className={`coverflow-track ${isPaused ? 'is-paused' : ''}`}>
           {carouselProjects.map((project, index) => {
             return (
               <div
@@ -718,6 +771,9 @@ function ProjectsCoverflow({ onSelectProject }) {
                 onFocus={() => setIsPaused(true)}
                 onBlur={() => setIsPaused(false)}
                 onClick={() => onSelectProject(project)}
+                ref={(node) => {
+                  cardRefs.current[index] = node;
+                }}
                 className="coverflow-card group"
                 style={{
                   '--position': index + 1,
@@ -821,6 +877,60 @@ function SkillsMarquee() {
 
 // --- WHAT WE CAN BUILD ---
 function WhatWeCanBuild({ onOpenChat }) {
+  const swingRef = useRef({ angle: 0, velocity: 0, dragging: false, startX: 0, startAngle: 0, lastAngle: 0 });
+  const [swingAngle, setSwingAngle] = useState(0);
+
+  useEffect(() => {
+    let frameId = 0;
+    let lastTime = performance.now();
+
+    const animateSwing = (time) => {
+      const elapsed = Math.min((time - lastTime) / 1000, 0.05);
+      lastTime = time;
+      const swing = swingRef.current;
+
+      if (!swing.dragging) {
+        swing.velocity += (-18 * swing.angle - 4.5 * swing.velocity) * elapsed;
+        swing.angle += swing.velocity * elapsed;
+        if (Math.abs(swing.angle) < 0.0005 && Math.abs(swing.velocity) < 0.0005) {
+          swing.angle = 0;
+          swing.velocity = 0;
+        }
+        setSwingAngle(swing.angle);
+      }
+
+      frameId = requestAnimationFrame(animateSwing);
+    };
+
+    frameId = requestAnimationFrame(animateSwing);
+    return () => cancelAnimationFrame(frameId);
+  }, []);
+
+  const handleCardPointerDown = (event) => {
+    const swing = swingRef.current;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    swing.dragging = true;
+    swing.startX = event.clientX;
+    swing.startAngle = swing.angle;
+    swing.lastAngle = swing.angle;
+  };
+
+  const handleCardPointerMove = (event) => {
+    const swing = swingRef.current;
+    if (!swing.dragging) return;
+    const nextAngle = Math.max(-0.65, Math.min(0.65, swing.startAngle - (event.clientX - swing.startX) / 240));
+    swing.velocity = (nextAngle - swing.lastAngle) * 12;
+    swing.lastAngle = nextAngle;
+    swing.angle = nextAngle;
+    setSwingAngle(nextAngle);
+  };
+
+  const handleCardPointerUp = (event) => {
+    const swing = swingRef.current;
+    if (swing.dragging) event.currentTarget.releasePointerCapture(event.pointerId);
+    swing.dragging = false;
+  };
+
   const capabilities = [
     {
       icon: Monitor,
@@ -857,49 +967,64 @@ function WhatWeCanBuild({ onOpenChat }) {
         
         {/* Left Column: Lead Portrait with Floating Badges & Stats */}
         <div className="lg:col-span-5 flex flex-col items-center">
-          <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl p-2 flex flex-col justify-end">
+          <div className="relative w-full max-w-[440px] aspect-[4/5] overflow-visible flex flex-col items-center justify-end">
             
-            {/* Lead Image */}
-            <img
-              src="/images/ken.png"
-              alt="Lead Tech"
-              className="absolute inset-0 w-full h-full object-cover object-top filter grayscale contrast-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+            <div
+              className="absolute inset-x-5 top-3 bottom-3 z-10 flex flex-col items-center cursor-grab active:cursor-grabbing"
+              onPointerDown={handleCardPointerDown}
+              onPointerMove={handleCardPointerMove}
+              onPointerUp={handleCardPointerUp}
+              onPointerCancel={handleCardPointerUp}
+              style={{
+                touchAction: 'none',
+                transform: `rotate(${swingAngle * (180 / Math.PI)}deg)`,
+                transformOrigin: 'top center',
+                willChange: 'transform'
+              }}
+            >
+              <div className="w-3 h-3 rounded-full bg-zinc-800 border border-zinc-600 shadow-lg" />
+              <div className="w-1 h-9 bg-zinc-800 rounded-full shadow-inner" />
 
-            {/* Floating Orbit Badges */}
-            <div className="orbit-badge-1 absolute top-6 left-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
-              <Monitor size={12} className="text-emerald-400" /> Web
-            </div>
-            <div className="orbit-badge-2 absolute top-16 right-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
-              <Smartphone size={12} className="text-emerald-400" /> Mobile
-            </div>
-            <div className="orbit-badge-3 absolute bottom-28 left-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
-              <Gamepad2 size={12} className="text-emerald-400" /> Game
-            </div>
-            <div className="orbit-badge-4 absolute bottom-24 right-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
-              <Sparkles size={12} className="text-emerald-400" /> AI Systems
+              <div className="relative w-full max-w-[300px] h-[460px] flex-none rounded-[1.6rem] overflow-hidden bg-zinc-950 border border-white/20 shadow-2xl">
+                <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 w-8 h-2 rounded-full bg-black/80 border border-white/30" />
+                <div className="h-[62%] relative overflow-hidden bg-gradient-to-br from-emerald-700 via-emerald-500 to-zinc-950">
+                  <img src="/images/ken.png" alt="Joshua Anderson Padilla" className="w-full h-full object-cover object-top" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-emerald-500/10 to-transparent" />
+                </div>
+                <div className="h-[38%] bg-zinc-950 px-4 py-3 flex flex-col gap-2">
+                  <div className="grid grid-cols-2 gap-1.5">
+                    {capabilities.map(({ icon: ServiceIcon, title }) => (
+                      <div key={title} className="flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/80 px-2 py-1.5">
+                        <ServiceIcon size={13} className="shrink-0 text-emerald-400" />
+                        <span className="truncate text-[8px] font-semibold text-zinc-300">
+                          {title.replace('Custom Systems & AI Integration', 'Systems & AI')}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-4 gap-1 border-t border-zinc-800 pt-2 text-center">
+                    <div>
+                      <p className="text-base font-bold leading-none text-white">30+</p>
+                      <p className="mt-1 text-[7px] leading-tight text-zinc-500">Projects Completed</p>
+                    </div>
+                    <div>
+                      <p className="text-base font-bold leading-none text-white">30</p>
+                      <p className="mt-1 text-[7px] leading-tight text-zinc-500">Total Reviews</p>
+                    </div>
+                    <div>
+                      <p className="text-base font-bold leading-none text-white">4+</p>
+                      <p className="mt-1 text-[7px] leading-tight text-zinc-500">Years Experience</p>
+                    </div>
+                    <div>
+                      <p className="text-base font-bold leading-none text-emerald-400">99%</p>
+                      <p className="mt-1 text-[7px] leading-tight text-zinc-500">Client Satisfaction</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Bottom Mini Stats Inside Frame */}
-            <div className="relative z-10 grid grid-cols-4 gap-1 pt-3 border-t border-white/10 text-center bg-black/60 backdrop-blur-md rounded-xl p-2">
-              <div>
-                <p className="text-base font-bold text-white font-display">30+</p>
-                <p className="text-[9px] text-zinc-400 leading-tight">Projects Completed</p>
-              </div>
-              <div>
-                <p className="text-base font-bold text-white font-display">30</p>
-                <p className="text-[9px] text-zinc-400 leading-tight">Total Reviews</p>
-              </div>
-              <div>
-                <p className="text-base font-bold text-white font-display">4+</p>
-                <p className="text-[9px] text-zinc-400 leading-tight">Years Experience</p>
-              </div>
-              <div>
-                <p className="text-base font-bold text-emerald-400 font-display">99%</p>
-                <p className="text-[9px] text-zinc-400 leading-tight">Client Satisfaction</p>
-              </div>
-            </div>
           </div>
         </div>
 
