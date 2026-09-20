@@ -123,6 +123,68 @@ const techStack = [
   { name: 'Bootstrap', icon: '/images/bootstrap.svg' },
 ];
 
+const technicalExpertiseGroups = [
+  {
+    title: 'Code Languages',
+    items: [
+      { name: 'PHP', icon: '/images/php.png', description: 'Server-side Development' },
+      { name: 'JavaScript', icon: '/images/javascript.png', description: 'Web Interactivity' },
+      { name: 'Python', icon: '/images/python.png', description: 'Programming Language' },
+      { name: 'C#', icon: '/images/csharp.png', description: 'Software Development' },
+      { name: 'Java', icon: '/images/java.png', description: 'Software Development' },
+      { name: 'C++', icon: '/images/cpp.png', description: 'Systems Programming' },
+      { name: 'Kotlin', icon: '/images/kotlin.png', description: 'Android Development' },
+      { name: 'Dart', icon: '/images/dart.svg', description: 'Flutter App Logic' },
+    ],
+  },
+  {
+    title: 'Frameworks & Development',
+    items: [
+      { name: 'Flutter', icon: '/images/flutter.png', description: 'Cross-platform Development' },
+      { name: 'Laravel', icon: '/images/laravel.png', description: 'Backend Development' },
+      { name: 'React', icon: '/images/react.png', description: 'Frontend Development' },
+      { name: 'Bootstrap', icon: '/images/bootstrap.svg', description: 'Responsive UI' },
+      { name: 'Vite', icon: '/images/vite.svg', description: 'Frontend Build Tool' },
+      { name: 'Flame Engine', icon: '/images/flame.png', description: 'Game Engine' },
+      { name: 'Unity', icon: '/images/unity.png', description: 'Game Development' },
+    ],
+  },
+  {
+    title: 'Database & Backend',
+    items: [
+      { name: 'Firebase', icon: '/images/firebase.png', description: 'Backend Services' },
+      { name: 'MySQL', icon: '/images/mysql.png', description: 'Database Systems' },
+      { name: 'PostgreSQL', icon: '/images/PostgreSQL.png', description: 'Relational Database' },
+      { name: 'MongoDB', icon: '/images/MongoDB.png', description: 'NoSQL Database' },
+      { name: 'SQLite', icon: '/images/sqlite.svg', description: 'Local App Storage' },
+      { name: 'REST API', icon: '/images/rest-api.svg', description: 'System Integration' },
+    ],
+  },
+  {
+    title: 'Hardware & Embedded',
+    items: [
+      { name: 'Arduino', icon: '/images/arduino.png', description: 'Embedded Systems' },
+      { name: 'Raspberry Pi', icon: '/images/raspberry-pi.svg', description: 'Single-board Computing' },
+      { name: 'ESP32', icon: '/images/ESP32.png', description: 'IoT Microcontroller' },
+      { name: 'IoT', icon: '/images/iot.svg', description: 'Connected Devices' },
+      { name: 'Sensors & Automation', icon: '/images/sensors-automation.svg', description: 'Monitoring & Control' },
+    ],
+  },
+  {
+    title: 'Design & Development Tools',
+    items: [
+      { name: 'Canva', icon: '/images/canva.svg', description: 'Graphic Design' },
+      { name: 'Adobe Illustrator', icon: '/images/Adobe illustrator.png', description: 'Vector Design' },
+      { name: 'Photoshop', icon: '/images/Photoshop.png', description: 'Image Editing' },
+      { name: 'VS Code', icon: '/images/vscode.svg', description: 'Code Editor' },
+      { name: 'Android Studio', icon: '/images/android-studio.svg', description: 'Android Tooling' },
+      { name: 'GitHub', icon: '/images/github.png', description: 'Version Control' },
+      { name: 'Postman', icon: '/images/postman.svg', description: 'API Testing' },
+      { name: 'Figma', icon: '/images/figma.svg', description: 'UI/UX Prototyping' },
+    ],
+  },
+];
+
 const teamMembers = [
   {
     name: 'Engr. Nonito Molijon Jr.',
@@ -281,42 +343,42 @@ const clientReviews = [
     rating: 5,
     name: 'Margarett Kim Allauigan',
     role: 'Client',
-    avatar: 'MA',
+    avatar: '/images/nonito.jpg',
     text: 'Great work! My web app works smoothly and everything functions well. Very professional and easy to work with. I would definitely recommend this developer!',
   },
   {
     rating: 5,
     name: 'Jennifer Pailona',
     role: 'Client',
-    avatar: 'JP',
+    avatar: '/images/ken.png',
     text: 'This team is genius! One of my hardest system problems was solved quickly. Thank you so much! Highly recommended! Rate 5 stars here! Very easy to negotiate with.',
   },
   {
     rating: 5,
     name: 'Hazel Joy Mangcucang',
     role: 'Client',
-    avatar: 'HM',
+    avatar: '/images/Junelyn.png',
     text: 'Highly recommended! Mabilis kausap, very detailed, and super patient sa pag-handle ng requirements and processes. Mabait and straightforward sa transactions kaya hassle-free.',
   },
   {
     rating: 5,
     name: 'Andrea Zarriena',
     role: 'Client',
-    avatar: 'AZ',
+    avatar: '/images/ronnel.png',
     text: 'To be honest, I was nervous at first because I thought my research and system concerns were too complicated. But they turned out to be really approachable and supportive throughout!',
   },
   {
     rating: 5,
     name: 'Emma Marmoles',
     role: 'Client',
-    avatar: 'EM',
+    avatar: '/images/jannlemor.png',
     text: '11/10 honestly! Our system was rushed because of the upcoming thesis defense, but they managed to finish it agad without compromising quality. Very responsive and kind!',
   },
   {
     rating: 5,
     name: 'Maegan Ancheta',
     role: 'Student / Capstone',
-    avatar: 'MA',
+    avatar: '/images/john-paul-terania.png',
     text: 'Vouching for this team! Ang bilis gumawa and super reliable. Very approachable and student-friendly price, ramdam na student considerate. Sulit ang bayad!',
   },
 ];
@@ -339,13 +401,10 @@ function SplashScreen() {
       aria-hidden="true"
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-5 bg-[#09090b] animate-splash-out pointer-events-none"
     >
-      <div className="flex items-center gap-2.5">
-        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-400 font-display text-lg shadow-lg shadow-emerald-500/10">
-          AC
+      <div className="flex items-center justify-center">
+        <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-emerald-500/30 bg-zinc-900 shadow-[0_0_18px_rgba(16,185,129,0.18)]">
+          <img src="/images/logo.jpg" alt="AC Logo" className="h-full w-full object-cover" />
         </div>
-        <span className="text-2xl font-bold tracking-tight text-white font-display">
-          AC<span className="text-emerald-400">desk</span>
-        </span>
       </div>
       <span className="h-0.5 w-32 overflow-hidden rounded-full bg-zinc-800">
         <span className="block h-full w-1/3 rounded-full bg-emerald-500 animate-splash-bar motion-reduce:animate-none" />
@@ -397,7 +456,7 @@ function MouseTokenTrail() {
 }
 
 // --- NAVBAR ---
-function Navbar({ onOpenChat }) {
+function Navbar({ onOpenChat, onOpenBrandSummary }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -423,14 +482,32 @@ function Navbar({ onOpenChat }) {
       <div className={`mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 transition-all duration-500 ${scrolled ? 'header-scrolled glass-nav shadow-2xl rounded-none' : 'max-w-6xl rounded-full bg-transparent'}`}>
         
         {/* Brand Logo */}
-        <a href="#top" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-400 font-display text-sm tracking-tight group-hover:scale-105 transition-transform">
-            AC
-          </div>
-          <span className="text-xl font-bold tracking-tight text-white font-display">
-            AC<span className="text-emerald-400">desk</span>
+        <button
+          type="button"
+          onClick={onOpenBrandSummary}
+          className="nav-logo-button"
+          aria-label="Read about AC: Apex of Champions"
+          aria-haspopup="dialog"
+          aria-controls="brandSummaryModal"
+        >
+          <span className="nav-brand-logo" aria-hidden="true">
+            <video
+              className="nav-brand-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+            >
+              <source src="/images/animation/animation.mp4" type="video/mp4" />
+            </video>
+            <span className="nav-brand-core">
+              <span className="nav-brand-ac">AC</span>
+              <span className="nav-brand-title">APEX OF<br />CHAMPIONS</span>
+            </span>
           </span>
-        </a>
+        </button>
 
         {/* Desktop Nav Pills */}
         <nav className="hidden md:flex items-center gap-1 nav-pill rounded-full px-3 py-1">
@@ -1213,169 +1290,151 @@ function WorkRoadmap() {
 
 // --- MEET OUR TEAM ---
 function TeamSection() {
-  const [scrollPos, setScrollPos] = useState(0);
-  const railRef = useRef(null);
-
-  const scroll = (direction) => {
-    if (!railRef.current) return;
-    const distance = 300;
-    railRef.current.scrollBy({
-      left: direction === 'next' ? distance : -distance,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <section id="team" className="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex items-end justify-between mb-12">
-        <div>
-          <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Talent</p>
-          <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-            Meet Our Team
-          </h2>
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => scroll('prev')}
-            className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white flex items-center justify-center transition-colors"
-            aria-label="Previous Member"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <button
-            type="button"
-            onClick={() => scroll('next')}
-            className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white flex items-center justify-center transition-colors"
-            aria-label="Next Member"
-          >
-            <ChevronRight size={18} />
-          </button>
-        </div>
+      <div className="mb-12">
+        <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Talent</p>
+        <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
+          Meet Our Team
+        </h2>
       </div>
 
-      {/* Team Slider Track */}
-      <div
-        ref={railRef}
-        className="flex gap-5 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        {teamMembers.map((member, i) => (
-          <div
-            key={i}
-            className="flex-none w-[240px] sm:w-[260px] dark-card rounded-2xl overflow-hidden group snap-start border-zinc-800/90"
-          >
-            {/* Grayscale Portrait Frame */}
-            <div className="aspect-[4/5] bg-zinc-900 overflow-hidden relative">
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent" />
-            </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        {teamMembers.map((member, index) => {
+          const initials = member.name
+            .split(' ')
+            .map((part) => part[0])
+            .slice(0, 2)
+            .join('')
+            .toUpperCase();
 
-            {/* Member Details */}
-            <div className="p-4 bg-zinc-950">
-              <div className="flex items-center gap-1.5 mb-1">
-                <h3 className="text-sm font-bold text-white tracking-tight truncate">
-                  {member.name}
-                </h3>
-                <span className="text-sky-400 shrink-0" title="Verified Member">
-                  <CheckCircle2 size={14} className="fill-sky-400 text-zinc-950" />
-                </span>
-              </div>
-              <p className="text-xs text-zinc-400 truncate">
-                {member.role}
-              </p>
+          return (
+            <div key={`${member.name}-${index}`} className="team-card-shell">
+              <article className="team-social-card group" aria-label={member.name}>
+                <div className="team-card-background">
+                  <img src={member.image} alt={member.name} loading="lazy" />
+                </div>
+
+                <div className="team-card-glow" aria-hidden="true" />
+
+                <div className="box box1" aria-hidden="true">
+                  <span className="icon">
+                    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" className="svg">
+                      <path d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z" />
+                    </svg>
+                  </span>
+                </div>
+
+                <div className="box box2" aria-hidden="true">
+                  <span className="icon">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="svg">
+                      <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" />
+                    </svg>
+                  </span>
+                </div>
+
+                <div className="box box3" aria-hidden="true">
+                  <span className="icon">
+                    <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg" className="svg">
+                      <path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z" />
+                    </svg>
+                  </span>
+                </div>
+
+                <div className="box box4" aria-hidden="true" />
+
+                <div className="team-card-name-wrap">
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="text-sm font-bold text-white tracking-tight truncate">
+                      {member.name}
+                    </h3>
+                    <span className="text-sky-400 shrink-0" title="Verified Member">
+                      <CheckCircle2 size={14} className="fill-sky-400 text-zinc-950" />
+                    </span>
+                  </div>
+                  <p className="text-xs text-zinc-200/80 truncate">
+                    {member.role}
+                  </p>
+                </div>
+              </article>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
 }
 
-// --- SERVICE PACKAGES (PRICING TIERS) ---
-function ServicePackages({ onOpenChat }) {
+// --- TECHNICAL EXPERTISE ---
+function TechnicalExpertiseSection() {
   return (
-    <section id="pricing" className="py-24 bg-zinc-950/60 border-t border-zinc-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">PRICING</p>
-          <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight mb-3">
-            Service Packages
-          </h2>
-          <p className="text-sm text-zinc-400">
-            Choose the package that fits your project and budget.
-          </p>
-        </div>
+    <section id="technical-expertise" className="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mb-12 text-center lg:text-left">
+        <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Technical Expertise</p>
+        <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight">
+          Technologies & Expertise
+        </h2>
+        <p className="mt-4 max-w-3xl text-sm sm:text-base text-zinc-400 leading-relaxed">
+          A multidisciplinary stack of technologies used in mobile development, embedded systems, software engineering, and modern web solutions.
+        </p>
+      </div>
 
-        {/* 3 Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          {pricingPlans.map((plan, i) => (
-            <div
-              key={i}
-              className={`rounded-2xl p-7 flex flex-col justify-between relative transition-all duration-300 ${
-                plan.highlight
-                  ? 'bg-zinc-900/90 border-2 border-emerald-500 shadow-2xl shadow-emerald-950/40 md:-translate-y-2'
-                  : 'bg-zinc-950 border border-zinc-800/90 hover:border-zinc-700'
-              }`}
-            >
-              {plan.badge && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-emerald-500 text-zinc-950 text-[11px] font-bold tracking-wider">
-                  {plan.badge}
-                </div>
-              )}
+      <div className="space-y-8">
+        {technicalExpertiseGroups.map((group) => (
+          <div key={group.title} className="space-y-4">
+            <h3 className="text-lg sm:text-xl font-semibold text-white tracking-tight">{group.title}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+              {group.items.map((item) => (
+                <div key={`${group.title}-${item.name}`} className="tech-card-wrapper noselect">
+                  <div className="tech-card-canvas" aria-label={item.name}>
+                    {Array.from({ length: 25 }).map((_, index) => (
+                      <div key={`${item.name}-tracker-${index}`} className={`tech-tracker tr-${index + 1}`} />
+                    ))}
+                    <div className="tech-card-shell">
+                      <div className="tech-card-content">
+                        <div className="tech-card-glare" />
+                        <div className="tech-card-lines">
+                          <span />
+                          <span />
+                          <span />
+                          <span />
+                        </div>
 
-              <div>
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-white tracking-tight">{plan.name}</h3>
-                  <p className="text-xs text-zinc-400">{plan.subtitle}</p>
-                </div>
+                        <div className="tech-card-icon-wrap">
+                          <img src={item.icon} alt={item.name} className="tech-card-icon" />
+                        </div>
 
-                {/* Price Display */}
-                <div className="mb-6 flex items-baseline gap-1">
-                  <span className="text-3xl sm:text-4xl font-extrabold text-white font-display">
-                    {plan.price}
-                  </span>
-                  <span className="text-sm text-zinc-400 font-medium">
-                    {plan.priceRange}
-                  </span>
-                </div>
+                        <div className="tech-card-title-wrap">
+                          <div className="tech-card-title">{item.name}</div>
+                        </div>
 
-                <p className="text-xs text-zinc-300 leading-relaxed mb-6">
-                  {plan.desc}
-                </p>
+                        <div className="tech-card-glowing-elements">
+                          <div className="tech-glow-1" />
+                          <div className="tech-glow-2" />
+                          <div className="tech-glow-3" />
+                        </div>
 
-                {/* Features List */}
-                <div className="space-y-3 pt-4 border-t border-zinc-800 text-xs">
-                  {plan.features.map((feat, fIdx) => (
-                    <div key={fIdx} className="flex items-start gap-2.5 text-zinc-300">
-                      <Check size={14} className="text-emerald-400 shrink-0 mt-0.5" />
-                      <span>{feat}</span>
+                        <div className="tech-card-subtitle">
+                          <span>{item.description}</span>
+                        </div>
+
+                        <div className="tech-card-particles">
+                          <span /><span /><span /><span /><span /><span />
+                        </div>
+
+                        <div className="tech-card-corner-elements">
+                          <span /><span /><span /><span />
+                        </div>
+
+                        <div className="tech-card-scan-line" />
+                      </div>
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-
-              {/* Button */}
-              <div className="pt-8">
-                <button
-                  type="button"
-                  onClick={onOpenChat}
-                  className={`w-full py-2.5 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-1.5 ${
-                    plan.highlight
-                      ? 'bg-white text-zinc-950 hover:bg-zinc-100 hover:scale-[1.02]'
-                      : 'bg-zinc-900 border border-zinc-800 text-white hover:bg-zinc-800'
-                  }`}
-                >
-                  {plan.cta} <ArrowUpRight size={14} />
-                </button>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
@@ -1460,8 +1519,8 @@ function ReviewsSection() {
 
             {/* Author */}
             <div className="flex items-center gap-3 pt-4 border-t border-zinc-800/80">
-              <div className="w-8 h-8 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 text-xs font-bold flex items-center justify-center">
-                {rev.avatar}
+              <div className="relative h-9 w-9 overflow-hidden rounded-full border border-emerald-500/40 bg-emerald-950/80 shadow-lg shadow-emerald-500/10">
+                <img src={rev.avatar} alt={rev.name} className="h-full w-full object-cover" />
               </div>
               <div>
                 <p className="text-xs font-bold text-white tracking-tight">{rev.name}</p>
@@ -1610,11 +1669,11 @@ function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-400 font-display text-sm">
-                AC
+              <div className="relative h-7 w-7 overflow-hidden rounded-lg border border-emerald-500/30 bg-zinc-900 shadow-[0_0_18px_rgba(16,185,129,0.18)]">
+                <img src="/images/logo.jpg" alt="AC Logo" className="h-full w-full object-cover" />
               </div>
               <span className="text-lg font-bold tracking-tight text-white font-display">
-                AC<span className="text-emerald-400">desk</span>
+                Apex of Champions
               </span>
             </div>
             <p className="leading-relaxed text-zinc-400">
@@ -1658,7 +1717,7 @@ function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="space-y-3">
+          <div id="contact" className="space-y-3">
             <p className="text-xs font-bold text-white tracking-wider uppercase">Contact</p>
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
@@ -1777,7 +1836,22 @@ function ChatAssistant({ isOpen, setIsOpen }) {
           className="chat-avatar group"
           aria-label="Ask our team"
         >
-          <span className="chat-avatar-mark">AC</span>
+          <span className="chat-avatar-mark">
+            <video
+              className="chat-avatar-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+            >
+              <source src="/images/animation/animation.mp4" type="video/mp4" />
+            </video>
+            <span className="chat-avatar-core">
+              <img src="/images/logo.jpg" alt="AC Logo" className="chat-avatar-logo" />
+            </span>
+          </span>
           <span className="chat-online-dot" aria-label="Online" />
         </button>
       </div>
@@ -1787,8 +1861,23 @@ function ChatAssistant({ isOpen, setIsOpen }) {
         <div className="fixed bottom-20 right-6 z-50 w-[320px] rounded-2xl bg-zinc-950 border border-zinc-800 shadow-2xl p-5 animate-in fade-in slide-in-from-bottom-5 duration-200">
           <div className="flex items-center justify-between pb-3 border-b border-zinc-800">
             <div className="flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-              <strong className="text-sm font-bold text-white">AC Inquiry Desk</strong>
+              <div className="relative h-7 w-7 overflow-hidden rounded-full border border-cyan-400/70 bg-zinc-900 shadow-[0_0_18px_rgba(34,211,238,0.2)]">
+                <video
+                  className="absolute inset-0 h-full w-full object-cover opacity-80"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  aria-hidden="true"
+                >
+                  <source src="/images/animation/animation.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-[3px] flex items-center justify-center rounded-full bg-zinc-950/90">
+                  <span className="text-[0.5rem] font-black tracking-[-0.14em] text-white">AC</span>
+                </div>
+              </div>
+              <strong className="text-sm font-bold text-white">Inquiry</strong>
             </div>
             <button
               type="button"
@@ -1844,10 +1933,120 @@ function ChatAssistant({ isOpen, setIsOpen }) {
   );
 }
 
+// --- BRAND SUMMARY MODAL ---
+function BrandSummaryModal({ isOpen, onClose, onOpenChat }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+      <div id="brandSummaryModal" role="dialog" aria-modal="true" className="brand-summary-panel">
+        <div className="brand-summary-topbar">
+          <button
+            type="button"
+            onClick={onClose}
+            className="brand-back-button"
+            aria-label="Back to portfolio"
+          >
+            <ChevronLeft size={15} />
+            Back
+          </button>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="brand-close-button"
+            aria-label="Close company summary"
+          >
+            <X size={16} />
+          </button>
+        </div>
+
+        <div className="brand-summary-layout">
+          <div className="brand-summary-content">
+            <div className="brand-summary-section">
+              <p className="brand-summary-kicker">About us</p>
+              <h3 className="brand-summary-title">AC: Apex of Champions</h3>
+              <p className="brand-summary-intro">
+                AC helps clients turn ideas into useful digital solutions through web systems, mobile applications, embedded projects, UI/UX design, graphics, documentation, and technology support.
+              </p>
+            </div>
+
+            <div className="brand-summary-grid">
+              <article className="brand-summary-card">
+                <p className="brand-summary-label">AC</p>
+                <h4>Flexible Like Alternating Current</h4>
+                <p>AC is inspired by Alternating Current — a symbol of flexibility, adaptability, and the ability to move through multiple paths and solutions.</p>
+              </article>
+
+              <article className="brand-summary-card">
+                <p className="brand-summary-label">Apex</p>
+                <h4>Reaching The Highest Peak</h4>
+                <p>Apex means the highest point. We keep improving, learning, and building stronger systems so every project rises toward its best version.</p>
+              </article>
+
+              <article className="brand-summary-card">
+                <p className="brand-summary-label">Champions</p>
+                <h4>Learning To Become Better</h4>
+                <p>Champions keep learning, practicing, and growing. AC carries that mindset through teamwork, research, creativity, and commitment.</p>
+              </article>
+            </div>
+
+            <div className="brand-summary-section">
+              <p className="brand-summary-kicker">How we help</p>
+              <h4 className="brand-summary-subheading">Built for real-world impact</h4>
+              <ul className="brand-summary-list">
+                <li>Clarifies project goals, features, workflows, and user needs.</li>
+                <li>Helps businesses improve digital presence through websites, systems, dashboards, branding, and customer-friendly platforms.</li>
+                <li>Designs clean UI/UX flows, prototypes, graphics, and visual materials.</li>
+                <li>Develops web systems, mobile applications, embedded projects, portfolios, and academic technology systems.</li>
+                <li>Supports students, startups, professionals, and organizations in turning ideas into polished, launch-ready solutions.</li>
+              </ul>
+            </div>
+
+            <p className="brand-summary-footer">
+              AC is built to rise with purpose, innovate with excellence, and grow with a champion spirit — crowned by God’s grace and committed to His glory.
+            </p>
+          </div>
+
+          <div className="brand-summary-visual" aria-label="AC Apex of Champions logo panel">
+            <div className="brand-summary-logo">
+              <video
+                className="brand-summary-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                aria-hidden="true"
+              >
+                <source src="/images/animation/animation.mp4" type="video/mp4" />
+              </video>
+              <span className="brand-summary-core">
+                <span className="brand-summary-ac">AC</span>
+                <span className="brand-summary-subtitle">APEX OF<br />CHAMPIONS</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="brand-summary-actions">
+          <a href="#contact" className="btn-emerald flex-1 text-center text-xs sm:text-sm" onClick={onClose}>
+            Work With AC
+          </a>
+          <a href="mailto:apexofchampions@gmail.com" className="btn-outline flex-1 text-center text-xs sm:text-sm" onClick={onClose}>
+            Email AC
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // --- MAIN APP ROOT ---
 export default function App() {
   const [chatOpen, setChatOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [brandSummaryOpen, setBrandSummaryOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll('main > section, footer');
@@ -1887,7 +2086,10 @@ export default function App() {
 
       {/* Code Token Cursor Trail */}
       <MouseTokenTrail />
-      <Navbar onOpenChat={() => setChatOpen(true)} />
+      <Navbar
+        onOpenChat={() => setChatOpen(true)}
+        onOpenBrandSummary={() => setBrandSummaryOpen(true)}
+      />
       
       <main>
         <div className="hero-project-stage">
@@ -1900,14 +2102,12 @@ export default function App() {
           />
         </div>
         <SkillsMarquee />
+        <TechnicalExpertiseSection />
         <WhatWeCanBuild
           onOpenChat={() => setChatOpen(true)}
         />
         <WorkRoadmap />
         <TeamSection />
-        <ServicePackages
-          onOpenChat={() => setChatOpen(true)}
-        />
         <ReviewsSection />
         <FaqSection />
         <PromoBanner
@@ -1924,6 +2124,14 @@ export default function App() {
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+      />
+      <BrandSummaryModal
+        isOpen={brandSummaryOpen}
+        onClose={() => setBrandSummaryOpen(false)}
+        onOpenChat={() => {
+          setBrandSummaryOpen(false);
+          setChatOpen(true);
+        }}
       />
       <ChatAssistant
         isOpen={chatOpen}
