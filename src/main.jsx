@@ -990,35 +990,38 @@ function WhatWeCanBuild({ onOpenChat }) {
                 <div className="h-[62%] relative overflow-hidden bg-gradient-to-br from-emerald-700 via-emerald-500 to-zinc-950">
                   <img src="/images/ken.png" alt="Joshua Anderson Padilla" className="w-full h-full object-cover object-top" />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-emerald-500/10 to-transparent" />
+                  {capabilities.map(({ icon: ServiceIcon, title }, index) => (
+                    <div
+                      key={title}
+                      title={title}
+                      className={`absolute z-10 flex h-10 w-10 items-center justify-center rounded-xl border border-sky-400/60 bg-sky-500/20 text-sky-300 shadow-[0_0_18px_rgba(14,165,233,0.35)] ${[
+                        'left-4 top-8',
+                        'right-4 top-8',
+                        'right-12 top-32',
+                        'left-4 bottom-8'
+                      ][index]}`}
+                    >
+                      <ServiceIcon size={19} />
+                    </div>
+                  ))}
                 </div>
                 <div className="h-[38%] bg-zinc-950 px-4 py-3 flex flex-col gap-2">
-                  <div className="grid grid-cols-2 gap-1.5">
-                    {capabilities.map(({ icon: ServiceIcon, title }) => (
-                      <div key={title} className="flex items-center gap-1.5 rounded-lg border border-zinc-800 bg-zinc-900/80 px-2 py-1.5">
-                        <ServiceIcon size={13} className="shrink-0 text-emerald-400" />
-                        <span className="truncate text-[8px] font-semibold text-zinc-300">
-                          {title.replace('Custom Systems & AI Integration', 'Systems & AI')}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="grid grid-cols-4 gap-1 border-t border-zinc-800 pt-2 text-center">
-                    <div>
-                      <p className="text-base font-bold leading-none text-white">30+</p>
-                      <p className="mt-1 text-[7px] leading-tight text-zinc-500">Projects Completed</p>
+                  <div className="grid grid-cols-4 gap-2 border-t border-zinc-800 pt-3 text-center">
+                    <div className="min-w-0 h-20 rounded-xl border border-zinc-800 bg-zinc-900/70 px-1.5 py-2 flex flex-col items-center justify-center shadow-inner">
+                      <p className="text-xl font-bold leading-none text-white">30+</p>
+                      <p className="mt-2 text-[8px] leading-tight text-zinc-400">Projects Completed</p>
                     </div>
-                    <div>
-                      <p className="text-base font-bold leading-none text-white">30</p>
-                      <p className="mt-1 text-[7px] leading-tight text-zinc-500">Total Reviews</p>
+                    <div className="min-w-0 h-20 rounded-xl border border-zinc-800 bg-zinc-900/70 px-1.5 py-2 flex flex-col items-center justify-center shadow-inner">
+                      <p className="text-xl font-bold leading-none text-white">30</p>
+                      <p className="mt-2 text-[8px] leading-tight text-zinc-400">Total Reviews</p>
                     </div>
-                    <div>
-                      <p className="text-base font-bold leading-none text-white">4+</p>
-                      <p className="mt-1 text-[7px] leading-tight text-zinc-500">Years Experience</p>
+                    <div className="min-w-0 h-20 rounded-xl border border-zinc-800 bg-zinc-900/70 px-1.5 py-2 flex flex-col items-center justify-center shadow-inner">
+                      <p className="text-xl font-bold leading-none text-white">4+</p>
+                      <p className="mt-2 text-[8px] leading-tight text-zinc-400">Years Experience</p>
                     </div>
-                    <div>
-                      <p className="text-base font-bold leading-none text-emerald-400">99%</p>
-                      <p className="mt-1 text-[7px] leading-tight text-zinc-500">Client Satisfaction</p>
+                    <div className="min-w-0 h-20 rounded-xl border border-emerald-500/30 bg-emerald-950/20 px-1.5 py-2 flex flex-col items-center justify-center shadow-inner">
+                      <p className="text-xl font-bold leading-none text-emerald-400">99%</p>
+                      <p className="mt-2 text-[8px] leading-tight text-emerald-200/70">Client Satisfaction</p>
                     </div>
                   </div>
                 </div>
@@ -1067,20 +1070,91 @@ function WhatWeCanBuild({ onOpenChat }) {
 
 // --- HOW WE'LL WORK TOGETHER (ROADMAP TIMELINE) ---
 function WorkRoadmap() {
+  const timelineRef = useRef(null);
+  const progressLineRef = useRef(null);
+  const progressMarkerRef = useRef(null);
+  const [activeStep, setActiveStep] = useState(-1);
+
+  useEffect(() => {
+    let frameId = 0;
+
+    const updateTimelineProgress = () => {
+      const timeline = timelineRef.current;
+      const progressLine = progressLineRef.current;
+      const progressMarker = progressMarkerRef.current;
+      if (!timeline || !progressLine || !progressMarker) return;
+
+      const bounds = timeline.getBoundingClientRect();
+      const start = window.innerHeight * 0.84;
+      const progress = Math.min(
+        Math.max((start - bounds.top) / Math.max(bounds.height + window.innerHeight * 0.6, 1), 0),
+        1
+      );
+      const pathLength = progressLine.getTotalLength();
+      progressLine.style.strokeDasharray = '1';
+      progressLine.style.strokeDashoffset = `${1 - progress}`;
+      const point = progressLine.getPointAtLength(pathLength * progress);
+      progressMarker.setAttribute('cx', `${point.x}`);
+      progressMarker.setAttribute('cy', `${point.y}`);
+      const nextActiveStep = progress <= 0
+        ? -1
+        : Math.min(workflowSteps.length - 1, Math.floor(progress * workflowSteps.length));
+      setActiveStep((currentStep) => currentStep === nextActiveStep ? currentStep : nextActiveStep);
+      frameId = requestAnimationFrame(updateTimelineProgress);
+    };
+
+    frameId = requestAnimationFrame(updateTimelineProgress);
+    return () => cancelAnimationFrame(frameId);
+  }, []);
+
   return (
     <section id="roadmap" className="py-24 bg-zinc-950/50 border-t border-zinc-900 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Process</p>
+          <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Career</p>
           <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-            How We'll Work Together.
+            Career Journey
           </h2>
+          <p className="mt-3 text-sm text-zinc-400">An evolving path of leadership, innovation, and impact</p>
         </div>
 
         {/* Timeline Container */}
-        <div className="relative">
-          {/* Vertical Central Line */}
-          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-500 via-zinc-700 to-emerald-500 -translate-x-1/2" />
+        <div ref={timelineRef} className="relative">
+          {/* Thick hand-drawn progress path */}
+          <svg
+            className="absolute inset-0 z-0 h-full w-full overflow-visible pointer-events-none"
+            viewBox="0 0 200 1000"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M100 0 C100 65 135 65 135 125 C135 185 70 165 70 245 C70 315 135 285 135 370 C135 455 70 430 70 520 C70 610 135 580 135 680 C135 775 70 750 70 835 C70 915 100 950 100 1000"
+              fill="none"
+              stroke="#27272a"
+              strokeWidth="7"
+              strokeLinecap="round"
+            />
+            <path
+              ref={progressLineRef}
+              d="M100 0 C100 65 135 65 135 125 C135 185 70 165 70 245 C70 315 135 285 135 370 C135 455 70 430 70 520 C70 610 135 580 135 680 C135 775 70 750 70 835 C70 915 100 950 100 1000"
+              pathLength="1"
+              fill="none"
+              stroke="#3b82f6"
+              strokeWidth="9"
+              strokeLinecap="round"
+              style={{ strokeDasharray: 1, strokeDashoffset: 1, filter: 'drop-shadow(0 0 8px rgba(59,130,246,0.65))' }}
+            />
+            <circle
+              ref={progressMarkerRef}
+              cx="100"
+              cy="0"
+              r="9"
+              fill="#3b82f6"
+              stroke="#dbeafe"
+              strokeWidth="3"
+              style={{ filter: 'drop-shadow(0 0 10px rgba(59,130,246,0.9))' }}
+            />
+          </svg>
 
           {/* Timeline Nodes */}
           <div className="space-y-12">
@@ -1094,7 +1168,9 @@ function WorkRoadmap() {
                   }`}
                 >
                   {/* Central Node Dot */}
-                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-zinc-950 border-2 border-emerald-400 flex items-center justify-center text-xs font-bold text-emerald-400 z-10 shadow-lg font-mono-code">
+                  <div className={`absolute left-4 sm:left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-zinc-950 border-2 flex items-center justify-center text-xs font-bold z-30 shadow-lg font-mono-code transition-all duration-300 ${
+                    idx <= activeStep ? 'border-emerald-300 text-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.5)]' : 'border-zinc-700 text-zinc-500'
+                  }`}>
                     {step.step}
                   </div>
 
@@ -1107,7 +1183,11 @@ function WorkRoadmap() {
                       isRight ? 'sm:pl-10' : 'sm:pr-10'
                     }`}
                   >
-                    <div className="dark-card p-6 border-zinc-800/90 hover:border-emerald-500/40">
+                    <div className={`relative z-10 dark-card p-6 border-zinc-800/90 hover:border-emerald-500/40 transition-all duration-500 ${
+                      idx <= activeStep
+                        ? 'border-emerald-500/50 shadow-[0_0_24px_rgba(16,185,129,0.12)] opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-4 pointer-events-none'
+                    }`}>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-[10px] font-bold tracking-wider text-emerald-400 uppercase bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
                           {step.badge}
