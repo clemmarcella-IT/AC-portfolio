@@ -321,9 +321,49 @@ const clientReviews = [
   },
 ];
 
+// --- SPLASH SCREEN LOADER (Matching Padilla HelpDesk) ---
+function SplashScreen() {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, 1900);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <div
+      aria-hidden="true"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-5 bg-[#09090b] animate-splash-out pointer-events-none"
+    >
+      <div className="flex items-center gap-2.5">
+        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-400 font-display text-lg shadow-lg shadow-emerald-500/10">
+          AC
+        </div>
+        <span className="text-2xl font-bold tracking-tight text-white font-display">
+          AC<span className="text-emerald-400">desk</span>
+        </span>
+      </div>
+      <span className="h-0.5 w-32 overflow-hidden rounded-full bg-zinc-800">
+        <span className="block h-full w-1/3 rounded-full bg-emerald-500 animate-splash-bar motion-reduce:animate-none" />
+      </span>
+    </div>
+  );
+}
+
 // --- MOUSE TRAIL EFFECT (Code Tokens) ---
 function MouseTokenTrail() {
   const tokens = ['const', '<div>', '=>', 'async', 'return', 'state', '01', 'true', '<AC />', 'npm dev', 'function', '{...}', 'class', 'await'];
+  const colors = [
+    ['#34d399', 'rgba(52, 211, 153, 0.6)'],
+    ['#38bdf8', 'rgba(56, 189, 248, 0.6)'],
+    ['#fbbf24', 'rgba(251, 191, 36, 0.6)'],
+    ['#fb7185', 'rgba(251, 113, 133, 0.6)'],
+    ['#c084fc', 'rgba(192, 132, 252, 0.6)'],
+  ];
   const lastSpawn = useRef(0);
 
   useEffect(() => {
@@ -335,8 +375,11 @@ function MouseTokenTrail() {
       const span = document.createElement('span');
       span.className = 'mt-token';
       span.innerText = tokens[Math.floor(Math.random() * tokens.length)];
+      const [tokenColor, tokenGlow] = colors[Math.floor(Math.random() * colors.length)];
       span.style.left = `${e.clientX}px`;
       span.style.top = `${e.clientY}px`;
+      span.style.setProperty('--token-color', tokenColor);
+      span.style.setProperty('--token-glow', tokenGlow);
       span.style.setProperty('--dx', `${(Math.random() - 0.5) * 40}px`);
       span.style.setProperty('--dy', `${-25 - Math.random() * 30}px`);
 
@@ -455,8 +498,26 @@ function Navbar({ onOpenChat }) {
 
 // --- HERO SECTION ---
 function HeroSection({ onOpenChat, onSelectProject }) {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroRef.current) return;
+      const shift = Math.min(window.scrollY * 0.08, 36);
+      heroRef.current.style.setProperty('--hero-shift', `${shift}px`);
+      heroRef.current.style.setProperty('--hero-fade', `${Math.min(window.scrollY / 700, 0.45)}`);
+      heroRef.current.style.setProperty('--hero-blur', `${Math.min(window.scrollY / 180, 5)}px`);
+      heroRef.current.style.setProperty('--hero-content-opacity', `${Math.max(0.1, 1 - window.scrollY / 420)}`);
+      heroRef.current.style.setProperty('--hero-content-shift', `${Math.min(window.scrollY * -0.12, -42)}px`);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section id="top" className="hero-section relative pt-28 sm:pt-36 pb-20 lg:pb-32 overflow-hidden">
+    <section ref={heroRef} id="top" className="hero-section relative pt-28 sm:pt-36 pb-20 lg:pb-32 overflow-hidden">
       {/* Background Ambient Lights */}
       <div className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[500px] glow-emerald opacity-60 blur-3xl -z-10" />
       <div className="pointer-events-none absolute top-40 right-10 w-[400px] h-[400px] glow-subtle opacity-50 blur-2xl -z-10" />
@@ -465,7 +526,7 @@ function HeroSection({ onOpenChat, onSelectProject }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Text & Actions */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="hero-copy lg:col-span-7 space-y-6">
             
             {/* Status Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-emerald-950/60 border border-emerald-500/30 text-emerald-400">
@@ -478,8 +539,8 @@ function HeroSection({ onOpenChat, onSelectProject }) {
               <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-light text-white tracking-tight leading-[1.06]">
                 Got a business problem?
               </h1>
-              <p className="accent-serif text-4xl sm:text-5xl lg:text-[62px] leading-[1.06] text-emerald-400">
-                Let's build the solution.
+              <p className="accent-serif text-4xl sm:text-5xl lg:text-[62px] leading-[1.06] text-white">
+                Let's build the <span className="text-emerald-400">solution.</span>
               </p>
             </div>
 
@@ -583,8 +644,8 @@ function BlindImage({ src, alt, activeIndex }) {
       setPhase('opening');
       timerRef.current = setTimeout(() => {
         setPhase('idle');
-      }, SLAT_COUNT * 55 + 150);
-    }, SLAT_COUNT * 55 + 100);
+      }, SLAT_COUNT * 25 + 80);
+    }, SLAT_COUNT * 25 + 60);
     return () => clearTimeout(timerRef.current);
   }, [src, activeIndex]);
 
@@ -600,7 +661,7 @@ function BlindImage({ src, alt, activeIndex }) {
           <div
             key={i}
             className={`blind-slat${phase === 'closing' ? ' closing' : phase === 'opening' ? ' opening' : ''}`}
-            style={{ '--delay': `${i * 55}ms` }}
+            style={{ '--delay': `${i * 25}ms` }}
           />
         ))}
       </div>
@@ -609,155 +670,95 @@ function BlindImage({ src, alt, activeIndex }) {
 }
 
 // --- 3D COVERFLOW FEATURED PROJECTS ---
+const carouselProjects = [...projectsData, ...projectsData];
+
 function ProjectsCoverflow({ onSelectProject }) {
-  const [activeIndex, setActiveIndex] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
 
-  useEffect(() => {
-    if (isPaused) return undefined;
-    const timer = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % projectsData.length);
-    }, 5500);
-    return () => window.clearInterval(timer);
-  }, [isPaused]);
-
-  const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % projectsData.length);
-  };
-
-  const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + projectsData.length) % projectsData.length);
-  };
-
   return (
-    <section id="projects" className="py-20 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+    <section id="projects" className="py-20 lg:py-28 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         <div className="flex items-end justify-between">
           <div>
             <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Portfolio</p>
-            <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight">
               Featured Projects
             </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-zinc-400">
+              A few systems, apps, and experiences we have built from first sketch to launch.
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={prevSlide}
-              className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 flex items-center justify-center transition-all"
-              aria-label="Previous Project"
+          <div className="flex items-center gap-3">
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                onSelectProject(projectsData[0]);
+              }}
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 hover:text-white transition-colors"
             >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              type="button"
-              onClick={nextSlide}
-              className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 flex items-center justify-center transition-all"
-              aria-label="Next Project"
-            >
-              <ChevronRight size={18} />
-            </button>
+              View details <ArrowUpRight size={14} />
+            </a>
           </div>
         </div>
       </div>
 
       {/* 3D Coverflow Perspective Container */}
       <div
-        className="coverflow-container max-w-full overflow-hidden py-8"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onFocus={() => setIsPaused(true)}
-        onBlur={() => setIsPaused(false)}
+        className="coverflow-container w-full max-w-7xl mx-auto py-6"
+        style={{ height: '540px' }}
       >
-        <div className="coverflow-track">
-          {projectsData.map((project, index) => {
-            const offset = index - activeIndex;
-            const absOffset = Math.abs(offset);
-            const isCenter = offset === 0;
-
-            // Compute dynamic 3D transform properties
-            let translateX = offset * 210;
-            let rotateY = offset * -28;
-            let translateZ = -absOffset * 150;
-            let scale = isCenter ? 1.05 : 0.88 - absOffset * 0.04;
-            let opacity = absOffset > 2 ? 0 : 1 - absOffset * 0.25;
-            let zIndex = 20 - absOffset;
-
-            // Handle wrapping or bounded display
-            if (absOffset > 2) {
-              opacity = 0;
-              pointerEvents: 'none';
-            }
-
+        <div className={`coverflow-track ${isPaused ? 'is-paused' : ''}`}>
+          {carouselProjects.map((project, index) => {
             return (
               <div
-                key={project.id}
-                onClick={() => {
-                  if (!isCenter) {
-                    setActiveIndex(index);
-                  } else {
-                    onSelectProject(project);
-                  }
-                }}
-                className={`coverflow-card group ${isCenter ? 'ring-1 ring-emerald-500/40 shadow-2xl' : 'hover:brightness-110'}`}
+                key={`${project.id}-${index}`}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                onFocus={() => setIsPaused(true)}
+                onBlur={() => setIsPaused(false)}
+                onClick={() => onSelectProject(project)}
+                className="coverflow-card group"
                 style={{
-                  transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
-                  opacity,
-                  zIndex,
-                  display: absOffset > 3 ? 'none' : 'block',
+                  '--position': index + 1,
+                  '--quantity': carouselProjects.length,
+                  '--project-delay': `${index * 70}ms`
                 }}
               >
+                {/* Ambient dynamic backlight glow behind active card */}
+                <div className="card-ambient-glow" />
+
                 {/* Main Card */}
-                <div className="w-full h-full rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800/90 relative flex flex-col justify-end p-5 shadow-2xl">
+                <div
+                  className="project-card-surface w-full h-full rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800/90 relative flex flex-col justify-end p-3 shadow-2xl"
+                  style={{ '--project-delay': `${index * 90}ms` }}
+                >
                   
-                  {/* Background Image — blind wipe on center card */}
-                  {isCenter ? (
-                    <BlindImage src={project.image} alt={project.title} activeIndex={activeIndex} />
-                  ) : (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover filter contrast-[1.05] brightness-90 group-hover:scale-105 transition-transform duration-500"
-                    />
-                  )}
+                  {/* Project artwork stays inside each rotating card */}
+                  <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 
                   {/* Gradient Overlay — sits above blind slats (z-index 6) */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" style={{ zIndex: 6 }} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" style={{ zIndex: 6 }} />
 
-                  {/* Card Content — sits above everything */}
-                  <div className="relative space-y-2" style={{ zIndex: 10 }}>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                      {project.category}
-                    </span>
+                  {/* Keep the title readable while the full details remain hover-only */}
+                  <div className="absolute inset-x-0 bottom-0 p-2.5 z-[7] bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:opacity-0 transition-opacity duration-200">
+                    <h4 className="project-card-title">{project.title}</h4>
+                  </div>
 
-                    <h3 className="text-lg font-bold text-white leading-snug tracking-tight">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-xs text-zinc-300 line-clamp-2 leading-relaxed">
-                      {project.shortDesc}
-                    </p>
-
-                    {/* Bottom Metadata */}
-                    <div className="pt-2 flex items-center justify-between border-t border-white/10 text-xs">
-                      {/* Contributors */}
-                      <div className="flex -space-x-1.5 items-center">
-                        {project.contributors.map((initials, i) => (
-                          <div
-                            key={i}
-                            className="w-5 h-5 rounded-full bg-zinc-800 border border-black text-[9px] font-bold text-zinc-300 flex items-center justify-center"
-                          >
-                            {initials}
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Tech Badge */}
-                      <div className="flex items-center gap-1 text-[11px] text-zinc-300 bg-black/50 px-2 py-0.5 rounded-md border border-white/10">
-                        <span>{project.tech[0]}</span>
-                        <span className="text-emerald-400 font-bold">+{project.tech.length - 1}</span>
-                      </div>
+                  {/* Detailed card overlay on hover */}
+                  <div className="project-hover-details" style={{ zIndex: 11 }}>
+                    <p className="project-card-category">Featured</p>
+                    <h4 className="project-card-title">{project.title}</h4>
+                    <p className="project-card-desc">{project.shortDesc}</p>
+                    <div className="project-card-tags">
+                      {project.tech.map((technology) => (
+                        <span key={technology} className="project-card-tag">
+                          {technology}
+                        </span>
+                      ))}
                     </div>
                   </div>
+
                 </div>
 
                 {/* Reflection underneath card */}
@@ -867,16 +868,16 @@ function WhatWeCanBuild({ onOpenChat }) {
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
 
             {/* Floating Orbit Badges */}
-            <div className="absolute top-6 left-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
+            <div className="orbit-badge-1 absolute top-6 left-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
               <Monitor size={12} className="text-emerald-400" /> Web
             </div>
-            <div className="absolute top-16 right-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
+            <div className="orbit-badge-2 absolute top-16 right-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
               <Smartphone size={12} className="text-emerald-400" /> Mobile
             </div>
-            <div className="absolute bottom-28 left-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
+            <div className="orbit-badge-3 absolute bottom-28 left-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
               <Gamepad2 size={12} className="text-emerald-400" /> Game
             </div>
-            <div className="absolute bottom-24 right-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
+            <div className="orbit-badge-4 absolute bottom-24 right-4 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[11px] text-zinc-300 flex items-center gap-1.5 shadow-lg">
               <Sparkles size={12} className="text-emerald-400" /> AI Systems
             </div>
 
@@ -1240,7 +1241,7 @@ function ReviewsSection() {
                   <Star key={s} size={14} className="fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <p className={`text-xs text-zinc-300 leading-relaxed mb-2 italic ${expandedReview === reviewKey ? '' : 'line-clamp-3'}`}>
+              <p className={`review-text text-xs text-zinc-300 leading-relaxed mb-2 italic ${expandedReview === reviewKey ? 'is-expanded' : ''}`}>
                 "{rev.text}"
               </p>
               <button
@@ -1263,6 +1264,48 @@ function ReviewsSection() {
               </div>
             </div>
           </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+// --- FREQUENTLY ASKED QUESTIONS ---
+function FaqSection() {
+  const [openQuestion, setOpenQuestion] = useState(null);
+  const questions = [
+    ['How long does a project take?', 'Most projects take 2 to 6 weeks depending on scope, feedback, and integrations.'],
+    ['What services do you provide?', 'We build websites, web systems, mobile apps, games, custom software, and AI-powered workflows.'],
+    ['How much does a website cost?', 'Projects start at the Basic package range. We provide a written scope and fixed quote after the initial consultation.'],
+    ['Can you redesign an existing website?', 'Yes. We can improve the visual design, content structure, performance, and mobile experience of an existing site.'],
+    ['Do you provide maintenance?', 'Yes. Every launch includes 30 days of free fixes, with optional ongoing maintenance afterward.'],
+  ];
+
+  return (
+    <section id="faq" className="py-24 max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="mb-12">
+        <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">FAQ</p>
+        <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">Questions, answered.</h2>
+      </div>
+      <div className="border-t border-zinc-800">
+        {questions.map(([question, answer], index) => {
+          const isOpen = openQuestion === index;
+          return (
+            <div key={question} className="border-b border-zinc-800">
+              <button
+                type="button"
+                onClick={() => setOpenQuestion(isOpen ? null : index)}
+                className="w-full flex items-center justify-between gap-4 py-5 text-left text-sm font-semibold text-zinc-200 hover:text-white transition-colors"
+                aria-expanded={isOpen}
+              >
+                <span>{question}</span>
+                <span className={`faq-icon text-emerald-400 text-xl font-light ${isOpen ? 'is-open' : ''}`}>+</span>
+              </button>
+              <div className={`faq-answer ${isOpen ? 'is-open' : ''}`}>
+                <p className="pb-5 pr-10 text-sm leading-relaxed text-zinc-400">{answer}</p>
+              </div>
+            </div>
           );
         })}
       </div>
@@ -1518,19 +1561,21 @@ function ProjectModal({ project, onClose }) {
 function ChatAssistant({ isOpen, setIsOpen }) {
   return (
     <>
-      {/* Floating Button */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-zinc-900 border border-emerald-500/50 shadow-2xl hover:bg-zinc-800 transition-all hover:scale-105 group"
-      >
-        <div className="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center text-zinc-950 font-bold text-xs">
-          AC
-        </div>
-        <span className="text-xs font-semibold text-white group-hover:text-emerald-400 transition-colors">
+      {/* Floating speech bubble and avatar */}
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2">
+        <div className="chat-speech-bubble" aria-hidden="true">
           Ask our team!
-        </span>
-      </button>
+        </div>
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="chat-avatar group"
+          aria-label="Ask our team"
+        >
+          <span className="chat-avatar-mark">AC</span>
+          <span className="chat-online-dot" aria-label="Online" />
+        </button>
+      </div>
 
       {/* Floating Chat Drawer */}
       {isOpen && (
@@ -1601,6 +1646,9 @@ export default function App() {
 
   useEffect(() => {
     const sections = document.querySelectorAll('main > section, footer');
+    const popTargets = document.querySelectorAll(
+      'main > section h1, main > section h2, main > section h3, main > section h4, main > section p, main > section button, main > section a, main > section img, main > section .dark-card, main > section .project-index'
+    );
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -1618,22 +1666,34 @@ export default function App() {
       observer.observe(section);
     });
 
+    popTargets.forEach((target, index) => {
+      target.classList.add('pop-up-on-scroll');
+      target.style.setProperty('--pop-delay', `${(index % 8) * 55}ms`);
+      observer.observe(target);
+    });
+
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-[#fafafa] selection:bg-emerald-500/30 selection:text-emerald-300 font-body relative">
+    <div className="min-h-screen bg-[#09090b] text-zinc-100 relative font-sans selection:bg-emerald-500/30 selection:text-emerald-300">
+      {/* Splash Screen on load */}
+      <SplashScreen />
+
+      {/* Code Token Cursor Trail */}
       <MouseTokenTrail />
       <Navbar onOpenChat={() => setChatOpen(true)} />
       
       <main>
-        <HeroSection
-          onOpenChat={() => setChatOpen(true)}
-          onSelectProject={(p) => setSelectedProject(p)}
-        />
-        <ProjectsCoverflow
-          onSelectProject={(p) => setSelectedProject(p)}
-        />
+        <div className="hero-project-stage">
+          <HeroSection
+            onOpenChat={() => setChatOpen(true)}
+            onSelectProject={(p) => setSelectedProject(p)}
+          />
+          <ProjectsCoverflow
+            onSelectProject={(p) => setSelectedProject(p)}
+          />
+        </div>
         <SkillsMarquee />
         <WhatWeCanBuild
           onOpenChat={() => setChatOpen(true)}
@@ -1644,6 +1704,7 @@ export default function App() {
           onOpenChat={() => setChatOpen(true)}
         />
         <ReviewsSection />
+        <FaqSection />
         <PromoBanner
           onOpenChat={() => setChatOpen(true)}
         />
