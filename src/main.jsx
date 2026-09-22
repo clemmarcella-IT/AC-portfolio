@@ -1059,13 +1059,15 @@ function WhatWeCanBuild({ onOpenChat }) {
                 willChange: 'transform'
               }}
             >
+              <span className="hanging-card-flare hanging-card-flare-left" aria-hidden="true" />
+              <span className="hanging-card-flare hanging-card-flare-right" aria-hidden="true" />
               <div className="w-3 h-3 rounded-full bg-zinc-800 border border-zinc-600 shadow-lg" />
               <div className="w-1 h-9 bg-zinc-800 rounded-full shadow-inner" />
 
               <div className="relative w-full max-w-[300px] h-[460px] flex-none rounded-[1.6rem] overflow-hidden bg-zinc-950 border border-white/20 shadow-2xl">
                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 w-8 h-2 rounded-full bg-black/80 border border-white/30" />
                 <div className="h-[62%] relative overflow-hidden bg-gradient-to-br from-emerald-700 via-emerald-500 to-zinc-950">
-                  <img src="/images/ken.png" alt="Joshua Anderson Padilla" className="w-full h-full object-cover object-top" />
+                  <img src="/images/nonito.jpg" alt="Engr. Nonito Molijon Jr." className="w-full h-full object-cover object-top" />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-emerald-500/10 to-transparent" />
                   {capabilities.map(({ icon: ServiceIcon, title }, index) => (
                     <div
@@ -1103,6 +1105,8 @@ function WhatWeCanBuild({ onOpenChat }) {
                   </div>
                 </div>
               </div>
+              <span className="hanging-card-flare hanging-card-flare-bottom-left" aria-hidden="true" />
+              <span className="hanging-card-flare hanging-card-flare-bottom-right" aria-hidden="true" />
             </div>
 
           </div>
@@ -1290,6 +1294,15 @@ function WorkRoadmap() {
 
 // --- MEET OUR TEAM ---
 function TeamSection() {
+  const teamRailRef = useRef(null);
+
+  const scrollTeamRail = (direction) => {
+    teamRailRef.current?.scrollBy({
+      left: direction * 320,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <section id="team" className="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mb-12">
@@ -1299,7 +1312,17 @@ function TeamSection() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="team-cards-slider">
+        <button
+          type="button"
+          className="team-rail-arrow team-rail-arrow-left"
+          onClick={() => scrollTeamRail(-1)}
+          aria-label="Show previous team members"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        <div ref={teamRailRef} className="team-cards-row">
         {teamMembers.map((member, index) => {
           const initials = member.name
             .split(' ')
@@ -1360,6 +1383,16 @@ function TeamSection() {
             </div>
           );
         })}
+        </div>
+
+        <button
+          type="button"
+          className="team-rail-arrow team-rail-arrow-right"
+          onClick={() => scrollTeamRail(1)}
+          aria-label="Show next team members"
+        >
+          <ChevronRight size={20} />
+        </button>
       </div>
     </section>
   );
