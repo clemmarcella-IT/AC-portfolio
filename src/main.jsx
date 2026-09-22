@@ -23,7 +23,6 @@ import {
   ShieldCheck,
   Smartphone,
   Sparkles,
-  Star,
   Users,
   X
 } from 'lucide-react';
@@ -34,12 +33,23 @@ import './styles.css';
 const projectsData = [
   {
     id: 1,
-    title: 'Barcode + Facial Recognition System',
+    title: 'Arduino-Based Barcode Scanner with Facial Recognition System',
     category: 'Embedded AI & Hardware',
     shortDesc: 'Automated student/employee attendance & access control utilizing embedded camera hardware, OpenCV biometric facial recognition, and barcode verification.',
     image: '/images/barcode-system.jpg',
-    gallery: ['/images/barcode-system-1.png', '/images/barcode-system-2.png', '/images/barcode-system-3.png'],
+    gallery: [
+      '/images/barcode-system-1.png',
+      '/images/barcode-system-2.png',
+      '/images/barcode-system-3.png',
+      '/images/barcode-system-4.png',
+      '/images/barcode-system-5.png',
+      '/images/barcode-system-6.png',
+      '/images/barcode-system-7.png',
+      '/images/barcode-system-8.png',
+    ],
     tech: ['Arduino', 'Python', 'OpenCV', 'Raspberry Pi', 'Biometrics'],
+    lead: 'Ken',
+    facebookUrl: 'https://www.facebook.com/share/p/19KRBGUcJ5/',
     contributors: ['KF', 'NM', 'RL'],
     accentColor: '#10b981',
   },
@@ -126,6 +136,7 @@ const techStack = [
 const technicalExpertiseGroups = [
   {
     title: 'Code Languages',
+    description: 'Programming languages used to build app logic, backend features, scripts, and system functionality.',
     items: [
       { name: 'PHP', icon: '/images/php.png', description: 'Server-side Development' },
       { name: 'JavaScript', icon: '/images/javascript.png', description: 'Web Interactivity' },
@@ -139,6 +150,7 @@ const technicalExpertiseGroups = [
   },
   {
     title: 'Frameworks & Development',
+    description: 'Frameworks and engines used for mobile apps, websites, dashboards, and interactive learning systems.',
     items: [
       { name: 'Flutter', icon: '/images/flutter.png', description: 'Cross-platform Development' },
       { name: 'Laravel', icon: '/images/laravel.png', description: 'Backend Development' },
@@ -151,6 +163,7 @@ const technicalExpertiseGroups = [
   },
   {
     title: 'Database & Backend',
+    description: 'Storage, authentication, APIs, and backend services that keep systems connected and reliable.',
     items: [
       { name: 'Firebase', icon: '/images/firebase.png', description: 'Backend Services' },
       { name: 'MySQL', icon: '/images/mysql.png', description: 'Database Systems' },
@@ -162,6 +175,7 @@ const technicalExpertiseGroups = [
   },
   {
     title: 'Hardware & Embedded',
+    description: 'Physical computing and connected-device tools for prototypes, automation, IoT, and engineering projects.',
     items: [
       { name: 'Arduino', icon: '/images/arduino.png', description: 'Embedded Systems' },
       { name: 'Raspberry Pi', icon: '/images/raspberry-pi.svg', description: 'Single-board Computing' },
@@ -172,6 +186,7 @@ const technicalExpertiseGroups = [
   },
   {
     title: 'Design & Development Tools',
+    description: 'Creative, coding, testing, and collaboration tools used to design, build, document, and deliver projects.',
     items: [
       { name: 'Canva', icon: '/images/canva.svg', description: 'Graphic Design' },
       { name: 'Adobe Illustrator', icon: '/images/Adobe illustrator.png', description: 'Vector Design' },
@@ -190,46 +205,55 @@ const teamMembers = [
     name: 'Engr. Nonito Molijon Jr.',
     role: 'Founder / CEO',
     image: '/images/nonito.jpg',
+    description: 'Founder / CEO, Computer Engineer, Researcher, Designer, Programmer, and Virtual Assistant. Leads the company and team, guides project direction, manages client collaboration, supervises research and planning, and drives business growth and innovation.',
   },
   {
     name: 'Ken Chester Felongco',
     role: 'CTO / Lead Developer',
     image: '/images/ken.png',
+    description: 'Chief Technology Officer and Lead Developer specializing in full-stack systems, backend development, databases, REST APIs, Firebase, UI/UX implementation, scalable architecture, technical direction, project planning, and code quality.',
   },
   {
     name: 'Junelyn Bertudazo',
     role: 'Finance & HR Officer',
     image: '/images/Junelyn.png',
+    description: 'Finance Manager and Human Resource Officer with a Professional Teacher background. Manages finance records, payroll, employee compensation, applicant screening, documentation, attendance, recruitment, and administrative coordination.',
   },
   {
     name: 'Ronnel Labata',
     role: 'Senior Developer',
     image: '/images/ronnel.png',
+    description: 'Senior Developer and Hardware Specialist working across web and mobile applications, IoT solutions, embedded systems, device integration, sensors, automation, hardware prototyping, troubleshooting, and system implementation.',
   },
   {
     name: 'JannLemor Malakad',
     role: 'Web Developer',
     image: '/images/jannlemor.png',
+    description: 'Senior Web Developer specializing in web systems, backend development, database management, API integration, system functionality, performance, security, and reliable software implementation.',
   },
   {
     name: 'John Paul Terania',
     role: 'UI/UX Designer',
     image: '/images/john-paul-terania.png',
+    description: 'UI/UX and Graphic Designer specializing in user-friendly app and system interfaces, wireframes, prototypes, visual branding, icons, layouts, and digital graphics that strengthen the team\'s visual identity.',
   },
   {
     name: 'Eljay',
     role: 'Frontend Developer',
     image: '/images/eljay.png',
+    description: 'Junior Developer specializing in responsive interfaces with React/Vite, Bootstrap, and JavaScript. Focuses on component-based UI, UI/UX implementation, API integration, state management, and cross-browser experiences.',
   },
   {
     name: 'Madel',
     role: 'Quality Assurance',
     image: '/images/madel.png',
+    description: 'Junior Developer supporting frontend development, responsive web design, UI implementation, feature testing, documentation, clean interfaces, and collaborative software development with detail-oriented execution.',
   },
   {
     name: 'Nachie',
     role: 'Project Coordinator',
     image: '/images/nachie.png',
+    description: 'Administrative and Marketing Officer supporting team coordination, internal communication, marketing activities, records management, client assistance, project documentation, promotions, and smooth administrative operations.',
   },
 ];
 
@@ -338,51 +362,6 @@ const pricingPlans = [
   },
 ];
 
-const clientReviews = [
-  {
-    rating: 5,
-    name: 'Margarett Kim Allauigan',
-    role: 'Client',
-    avatar: '/images/nonito.jpg',
-    text: 'Great work! My web app works smoothly and everything functions well. Very professional and easy to work with. I would definitely recommend this developer!',
-  },
-  {
-    rating: 5,
-    name: 'Jennifer Pailona',
-    role: 'Client',
-    avatar: '/images/ken.png',
-    text: 'This team is genius! One of my hardest system problems was solved quickly. Thank you so much! Highly recommended! Rate 5 stars here! Very easy to negotiate with.',
-  },
-  {
-    rating: 5,
-    name: 'Hazel Joy Mangcucang',
-    role: 'Client',
-    avatar: '/images/Junelyn.png',
-    text: 'Highly recommended! Mabilis kausap, very detailed, and super patient sa pag-handle ng requirements and processes. Mabait and straightforward sa transactions kaya hassle-free.',
-  },
-  {
-    rating: 5,
-    name: 'Andrea Zarriena',
-    role: 'Client',
-    avatar: '/images/ronnel.png',
-    text: 'To be honest, I was nervous at first because I thought my research and system concerns were too complicated. But they turned out to be really approachable and supportive throughout!',
-  },
-  {
-    rating: 5,
-    name: 'Emma Marmoles',
-    role: 'Client',
-    avatar: '/images/jannlemor.png',
-    text: '11/10 honestly! Our system was rushed because of the upcoming thesis defense, but they managed to finish it agad without compromising quality. Very responsive and kind!',
-  },
-  {
-    rating: 5,
-    name: 'Maegan Ancheta',
-    role: 'Student / Capstone',
-    avatar: '/images/john-paul-terania.png',
-    text: 'Vouching for this team! Ang bilis gumawa and super reliable. Very approachable and student-friendly price, ramdam na student considerate. Sulit ang bayad!',
-  },
-];
-
 // --- SPLASH SCREEN LOADER (Matching Padilla HelpDesk) ---
 function SplashScreen() {
   const [visible, setVisible] = useState(true);
@@ -474,7 +453,6 @@ function Navbar({ onOpenChat, onOpenBrandSummary }) {
     { label: 'Services', href: '#services' },
     { label: 'Roadmap', href: '#roadmap' },
     { label: 'Team', href: '#team' },
-    { label: 'Reviews', href: '#reviews' },
   ];
 
   return (
@@ -600,7 +578,7 @@ function HeroSection({ onOpenChat, onSelectProject }) {
   }, []);
 
   return (
-    <section ref={heroRef} id="top" className="home-layer hero-section relative pt-28 sm:pt-36 pb-20 lg:pb-32 overflow-hidden">
+    <section ref={heroRef} id="top" className="home-layer hero-section relative pt-36 sm:pt-44 pb-20 lg:pb-32 overflow-hidden">
       {/* Background Ambient Lights */}
       <div className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[500px] glow-emerald opacity-60 blur-3xl -z-10" />
       <div className="pointer-events-none absolute top-40 right-10 w-[400px] h-[400px] glow-subtle opacity-50 blur-2xl -z-10" />
@@ -611,21 +589,19 @@ function HeroSection({ onOpenChat, onSelectProject }) {
           {/* Left Column: Text & Actions */}
           <div className="hero-copy lg:col-span-7 space-y-6">
             
-            {/* Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-emerald-950/60 border border-emerald-500/30 text-emerald-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Available for work
-            </div>
-
             {/* Main Headline */}
             <div className="space-y-1">
               <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-light text-white tracking-tight leading-[1.06]">
-                Got a business problem?
+                AC: Apex of<br />Champions
               </h1>
               <p className="accent-serif text-4xl sm:text-5xl lg:text-[62px] leading-[1.06] text-white">
-                Let's build the <span className="text-emerald-400">solution.</span>
+                <span className="text-emerald-400">Your Solution</span>
               </p>
             </div>
+
+            <h2 className="text-base sm:text-lg font-semibold text-white tracking-tight">
+              A Multidisciplinary Technology Development Team
+            </h2>
 
             {/* Team Identity Meta Line */}
             <div className="flex flex-wrap items-center gap-x-2 text-xs sm:text-sm text-zinc-400">
@@ -641,24 +617,17 @@ function HeroSection({ onOpenChat, onSelectProject }) {
 
             {/* Paragraph Summary */}
             <p className="text-sm sm:text-base text-zinc-400 max-w-xl leading-relaxed">
-              We develop custom software, websites, mobile apps, and AI-powered systems designed to help businesses work smarter and grow faster.
+              AC: Apex of Champions is a collaborative group of developers, researchers, and innovators focused on creating modern technology solutions in software development, embedded systems, mobile applications, and web technologies.
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
-              <button
-                type="button"
-                onClick={onOpenChat}
-                className="btn-emerald text-xs sm:text-sm inline-flex items-center gap-2"
-              >
-                Send Inquiry
-                <ArrowUpRight size={16} />
-              </button>
               <a
                 href="#projects"
-                className="btn-outline text-xs sm:text-sm inline-flex items-center gap-2"
+                className="btn-emerald text-xs sm:text-sm inline-flex items-center gap-2"
               >
-                View Works
+                View Projects
+                <ArrowUpRight size={16} />
               </a>
             </div>
 
@@ -711,44 +680,12 @@ function HeroSection({ onOpenChat, onSelectProject }) {
 const SLAT_COUNT = 10;
 
 function BlindImage({ src, alt, activeIndex }) {
-  const [displaySrc, setDisplaySrc] = useState(src);
-  const [phase, setPhase] = useState('idle'); // 'idle' | 'closing' | 'opening'
-  const prevSrcRef = useRef(src);
-  const timerRef = useRef(null);
-
-  useEffect(() => {
-    if (src === prevSrcRef.current) return;
-    clearTimeout(timerRef.current);
-    // Phase 1: close blinds over old image
-    setPhase('closing');
-    timerRef.current = setTimeout(() => {
-      setDisplaySrc(src);
-      prevSrcRef.current = src;
-      setPhase('opening');
-      timerRef.current = setTimeout(() => {
-        setPhase('idle');
-      }, SLAT_COUNT * 25 + 80);
-    }, SLAT_COUNT * 25 + 60);
-    return () => clearTimeout(timerRef.current);
-  }, [src, activeIndex]);
-
   return (
-    <>
-      <img
-        src={displaySrc}
-        alt={alt}
-        className="absolute inset-0 w-full h-full object-cover filter contrast-[1.05] brightness-90"
-      />
-      <div className="blind-overlay">
-        {Array.from({ length: SLAT_COUNT }).map((_, i) => (
-          <div
-            key={i}
-            className={`blind-slat${phase === 'closing' ? ' closing' : phase === 'opening' ? ' opening' : ''}`}
-            style={{ '--delay': `${i * 25}ms` }}
-          />
-        ))}
-      </div>
-    </>
+    <img
+      src={src}
+      alt={alt}
+      className="absolute inset-0 h-full w-full object-cover filter contrast-[1.05] brightness-90"
+    />
   );
 }
 
@@ -1295,6 +1232,7 @@ function WorkRoadmap() {
 // --- MEET OUR TEAM ---
 function TeamSection() {
   const teamRailRef = useRef(null);
+  const [selectedMember, setSelectedMember] = useState(null);
 
   const scrollTeamRail = (direction) => {
     teamRailRef.current?.scrollBy({
@@ -1364,7 +1302,15 @@ function TeamSection() {
                   </span>
                 </div>
 
-                <div className="box box4" aria-hidden="true" />
+                <button
+                  type="button"
+                  className="box box4 team-info-box"
+                  onClick={() => setSelectedMember(member)}
+                  aria-label={`View information about ${member.name}`}
+                >
+                  <span className="team-info-mark">i</span>
+                  <span className="team-info-label">Info</span>
+                </button>
 
                 <div className="team-card-name-wrap">
                   <div className="flex items-center gap-1.5">
@@ -1394,6 +1340,30 @@ function TeamSection() {
           <ChevronRight size={20} />
         </button>
       </div>
+
+      {selectedMember && (
+        <div className="team-detail-backdrop" onClick={() => setSelectedMember(null)}>
+          <article className="team-detail-panel" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              className="team-detail-close"
+              onClick={() => setSelectedMember(null)}
+              aria-label="Close team member information"
+            >
+              <X size={18} />
+            </button>
+            <div className="team-detail-header">
+              <img src={selectedMember.image} alt={selectedMember.name} className="team-detail-image" />
+              <div>
+                <p className="text-xs uppercase tracking-widest text-emerald-400">Team profile</p>
+                <h3 className="mt-1 text-2xl font-bold text-white">{selectedMember.name}</h3>
+                <p className="mt-1 text-sm font-semibold text-sky-300">{selectedMember.role}</p>
+              </div>
+            </div>
+            <p className="mt-6 text-sm leading-relaxed text-zinc-300">{selectedMember.description}</p>
+          </article>
+        </div>
+      )}
     </section>
   );
 }
@@ -1416,6 +1386,7 @@ function TechnicalExpertiseSection() {
         {technicalExpertiseGroups.map((group) => (
           <div key={group.title} className="space-y-4">
             <h3 className="text-lg sm:text-xl font-semibold text-white tracking-tight">{group.title}</h3>
+            <p className="max-w-3xl text-xs sm:text-sm text-zinc-400 leading-relaxed">{group.description}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
               {group.items.map((item) => (
                 <div key={`${group.title}-${item.name}`} className="tech-card-wrapper noselect">
@@ -1468,101 +1439,6 @@ function TechnicalExpertiseSection() {
             </div>
           </div>
         ))}
-      </div>
-    </section>
-  );
-}
-
-// --- WHAT CLIENTS SAY (REVIEWS) ---
-function ReviewsSection() {
-  const [expandedReview, setExpandedReview] = useState(null);
-  const [reviewIndex, setReviewIndex] = useState(0);
-
-  const visibleReviews = [0, 1, 2].map((offset) => (
-    clientReviews[(reviewIndex + offset) % clientReviews.length]
-  ));
-
-  const moveReviews = (direction) => {
-    setExpandedReview(null);
-    setReviewIndex((current) => (
-      (current + direction + clientReviews.length) % clientReviews.length
-    ));
-  };
-
-  return (
-    <section id="reviews" className="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex items-end justify-between mb-12">
-        <div>
-          <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Testimonials</p>
-          <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-            What Clients Say
-          </h2>
-        </div>
-        <div className="flex items-center gap-2">
-          <a
-            href="https://www.facebook.com/profile.php?id=61587213903017"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden sm:flex text-xs font-medium text-zinc-400 hover:text-emerald-400 items-center gap-1 transition-colors mr-2"
-          >
-            See all <ArrowUpRight size={14} />
-          </a>
-          <button
-            type="button"
-            onClick={() => moveReviews(-1)}
-            className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 flex items-center justify-center transition-all"
-            aria-label="Previous review"
-          >
-            <ChevronLeft size={16} />
-          </button>
-          <button
-            type="button"
-            onClick={() => moveReviews(1)}
-            className="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 flex items-center justify-center transition-all"
-            aria-label="Next review"
-          >
-            <ChevronRight size={16} />
-          </button>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {visibleReviews.map((rev, i) => {
-          const reviewKey = (reviewIndex + i) % clientReviews.length;
-          return (
-          <div key={`${rev.name}-${reviewKey}`} className="dark-card p-6 flex flex-col justify-between border-zinc-800/90 animate-in fade-in duration-300">
-            <div>
-              {/* Star Rating */}
-              <div className="flex items-center gap-1 text-amber-400 mb-4">
-                {[...Array(rev.rating)].map((_, s) => (
-                  <Star key={s} size={14} className="fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className={`review-text text-xs text-zinc-300 leading-relaxed mb-2 italic ${expandedReview === reviewKey ? 'is-expanded' : ''}`}>
-                "{rev.text}"
-              </p>
-              <button
-                type="button"
-                onClick={() => setExpandedReview(expandedReview === reviewKey ? null : reviewKey)}
-                className="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-              >
-                {expandedReview === reviewKey ? 'See less' : 'See more'}
-              </button>
-            </div>
-
-            {/* Author */}
-            <div className="flex items-center gap-3 pt-4 border-t border-zinc-800/80">
-              <div className="relative h-9 w-9 overflow-hidden rounded-full border border-emerald-500/40 bg-emerald-950/80 shadow-lg shadow-emerald-500/10">
-                <img src={rev.avatar} alt={rev.name} className="h-full w-full object-cover" />
-              </div>
-              <div>
-                <p className="text-xs font-bold text-white tracking-tight">{rev.name}</p>
-                <p className="text-[11px] text-zinc-400">{rev.role}</p>
-              </div>
-            </div>
-          </div>
-          );
-        })}
       </div>
     </section>
   );
@@ -1692,66 +1568,170 @@ function CtaSection({ onOpenChat }) {
   );
 }
 
+// --- RECOGNITION & AWARDS ---
+const achievements = [
+  { icon: '✓', title: 'Thesis Project Award - Outstanding Capstone Innovation in Mobile and Embedded Systems', description: 'Recognized for building a research-driven system that combines mobile application development, embedded hardware, and practical technology deployment.' },
+  { icon: '✓', title: 'Successfully Defended Capstone Thesis (With High Distinction)', description: 'Completed the capstone defense with strong technical presentation, research explanation, and system demonstration before an academic panel.' },
+  { icon: '⚙', title: 'Regional Robotics Competition Champion (Division Level)', description: 'Earned champion recognition through robotics design, automation logic, hardware control, and real-time problem solving during competition.' },
+  { icon: '◆', title: 'Most Innovative Product Award - Capstone Project Showcase', description: 'Awarded for presenting a technology product with practical value, strong system concept, and a clear connection between research and implementation.' },
+  { icon: '●', title: "Customer's Choice Award - Mobile Application Development Exhibit", description: 'Selected through exhibit engagement and audience interest, showing that the application concept was understandable, useful, and appealing to users.' },
+  { icon: '▣', title: 'Best Capstone Research Presentation Award', description: 'Recognized for communicating the research problem, methodology, system design, results, and recommendations in a clear and professional way.' },
+  { icon: '⌁', title: 'Outstanding Performance in Software Engineering and Embedded Systems Development', description: 'Acknowledged for consistent technical execution across software architecture, hardware integration, testing, and prototype improvement.' },
+  { icon: '◇', title: 'University Innovation Expo Finalist - Mobile & IoT Solutions Category', description: 'Reached finalist status by presenting a project concept with innovation potential, technical feasibility, and relevance to mobile and IoT applications.' },
+  { icon: '✦', title: "President's List Award for Academic Excellence in Information Technology", description: 'Recognized for strong academic performance, discipline, and consistency in information technology coursework and project requirements.' },
+  { icon: '✧', title: 'Best Team Leadership Recognition in Capstone Development Project', description: 'Recognized for guiding planning, task coordination, technical decisions, and team communication throughout the development process.' },
+];
+
+const achievementPhotos = [
+  { src: '/images/1st.jpg', alt: 'AC recognition portrait' },
+  { src: '/images/1st1.jpg', alt: 'AC achievement event' },
+  { src: '/images/ac-team.png', alt: 'AC team achievement' },
+  { src: '/images/barcode-system.jpg', alt: 'Barcode and facial recognition system' },
+  { src: '/images/genspe-game.jpg', alt: 'GenSpe educational game project' },
+];
+
+function AchievementsSection() {
+  const [activeAchievement, setActiveAchievement] = useState(0);
+  const activePhoto = activeAchievement % achievementPhotos.length;
+
+  const showNextPhoto = () => {
+    setActiveAchievement((currentAchievement) => (currentAchievement + 1) % achievements.length);
+  };
+
+  return (
+    <section id="achievements" className="py-24 bg-zinc-950/50 border-y border-zinc-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12">
+          <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Achievements</p>
+          <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">Recognition &amp; Awards</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-zinc-400">
+            Recognition earned through innovation, research excellence, leadership in development projects, and participation in competitive technology and engineering events.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(280px,0.8fr)_minmax(0,1.2fr)] gap-8 lg:gap-12 items-start">
+          <figure
+            className="relative rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl lg:sticky lg:top-28"
+            role="button"
+            tabIndex="0"
+            onClick={showNextPhoto}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                showNextPhoto();
+              }
+            }}
+            aria-label={`Show next achievement photo: ${achievements[activeAchievement].title}`}
+          >
+            <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[620px]">
+              {achievementPhotos.map((photo, index) => {
+                if (index === activePhoto) return null;
+                const layerOffset = index > activePhoto ? index - activePhoto : index - activePhoto + achievementPhotos.length;
+                return (
+                  <img
+                    key={`back-${photo.src}`}
+                    src={photo.src}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 h-full w-full rounded-2xl border border-white/15 object-cover object-center opacity-65 shadow-xl transition-all duration-500"
+                    style={{
+                      zIndex: layerOffset,
+                      transform: `translate(${(layerOffset % 2 ? 1 : -1) * layerOffset * 18}px, ${(layerOffset % 2 ? -1 : 1) * layerOffset * 14}px) scale(${1 - layerOffset * 0.035})`,
+                      filter: `brightness(${1 - layerOffset * 0.08})`,
+                    }}
+                  />
+                );
+              })}
+              <img
+                src={achievementPhotos[activePhoto].src}
+                alt={achievementPhotos[activePhoto].alt}
+                className="relative z-10 m-4 h-[calc(100%-2rem)] w-[calc(100%-2rem)] rounded-2xl object-cover object-center transition-opacity duration-300 sm:m-6 sm:h-[calc(100%-3rem)] sm:w-[calc(100%-3rem)]"
+                loading="lazy"
+              />
+              <span className="absolute right-3 bottom-20 rounded-full border border-white/20 bg-black/60 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur-sm">
+                Click for next photo
+              </span>
+            </div>
+            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent px-5 pb-5 pt-16">
+              <p className="text-xs uppercase tracking-widest text-emerald-400">{achievements[activeAchievement].icon} Achievement {activeAchievement + 1}</p>
+              <p className="mt-1 text-sm font-semibold text-white">{achievements[activeAchievement].title}</p>
+              <p className="mt-2 text-xs leading-relaxed text-zinc-300">{achievements[activeAchievement].description}</p>
+            </figcaption>
+          </figure>
+
+          <div className="space-y-3">
+            {achievements.map((achievement, index) => (
+              <article
+                key={achievement.title}
+                className={`achievement-row group border-b border-zinc-800/80 py-4 first:pt-0 last:border-b-0 ${index === activeAchievement ? 'is-active' : ''}`}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-950/40 text-emerald-400">
+                    <span className="text-sm font-semibold">{achievement.icon}</span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <h3 className="text-xs font-semibold leading-relaxed text-white">{achievement.title}</h3>
+                        <p className="mt-1 text-xs leading-relaxed text-zinc-300">{achievement.description}</p>
+                      </div>
+                      <span className="shrink-0 text-[10px] font-mono-code text-zinc-600">0{index + 1}</span>
+                    </div>
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61587213903017"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                    >
+                      View Proof
+                      <ExternalLink size={12} />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // --- FOOTER ---
 function Footer() {
   return (
-    <footer className="border-t border-zinc-900 bg-zinc-950 py-16 text-xs text-zinc-400">
+    <footer id="page-bottom" className="border-t border-zinc-900 bg-zinc-950 py-16 text-xs text-zinc-400">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-zinc-900">
-          
-          {/* Brand */}
+        <div className="grid grid-cols-1 gap-10 border-b border-zinc-900 pb-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="relative h-7 w-7 overflow-hidden rounded-lg border border-emerald-500/30 bg-zinc-900 shadow-[0_0_18px_rgba(16,185,129,0.18)]">
                 <img src="/images/logo.jpg" alt="AC Logo" className="h-full w-full object-cover" />
               </div>
               <span className="text-lg font-bold tracking-tight text-white font-display">
-                Apex of Champions
+                AC: Apex of Champions
               </span>
             </div>
-            <p className="leading-relaxed text-zinc-400">
-              Websites, mobile apps, and custom software for businesses that need reliable digital solutions.
+            <p className="font-semibold tracking-wide text-emerald-400">COMPANY REG NO. 2026070255753-17</p>
+            <p className="max-w-md text-sm italic leading-relaxed text-zinc-300">
+              Philippians 4:13 — &quot;I can do all things through Christ who strengthens me.&quot;
             </p>
-            <div className="flex items-center gap-3 text-zinc-300">
-              <a href="https://www.facebook.com/profile.php?id=61587213903017" target="_blank" rel="noreferrer" className="hover:text-emerald-400">
-                Facebook
-              </a>
-              <span>·</span>
-              <a href="mailto:apexofchampions@gmail.com" className="hover:text-emerald-400">
-                Email
-              </a>
-              <span>·</span>
-              <a href="https://wa.me/639553983149" target="_blank" rel="noreferrer" className="hover:text-emerald-400">
-                WhatsApp
-              </a>
-            </div>
           </div>
 
-          {/* Navigation */}
           <div className="space-y-3">
-            <p className="text-xs font-bold text-white tracking-wider uppercase">Navigation</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-white">Navigation</p>
             <ul className="space-y-2">
-              <li><a href="#top" className="hover:text-white">&gt; Home</a></li>
-              <li><a href="#projects" className="hover:text-white">&gt; Projects</a></li>
-              <li><a href="#reviews" className="hover:text-white">&gt; Reviews</a></li>
-              <li><a href="#pricing" className="hover:text-white">&gt; Pricing</a></li>
+              <li><a href="#top" className="hover:text-white">About</a></li>
+              <li><a href="#skills" className="hover:text-white">Technologies</a></li>
+              <li><a href="#team" className="hover:text-white">Team</a></li>
+              <li><a href="#projects" className="hover:text-white">Projects</a></li>
+              <li><a href="#achievements" className="hover:text-white">Achievements</a></li>
+              <li><a href="#contact" className="hover:text-white">Contact</a></li>
             </ul>
           </div>
 
-          {/* Services */}
           <div className="space-y-3">
-            <p className="text-xs font-bold text-white tracking-wider uppercase">Services</p>
-            <ul className="space-y-2">
-              <li><a href="#services" className="hover:text-white">&gt; Web Development</a></li>
-              <li><a href="#services" className="hover:text-white">&gt; Mobile Apps</a></li>
-              <li><a href="#services" className="hover:text-white">&gt; Game Development</a></li>
-              <li><a href="#services" className="hover:text-white">&gt; Custom Systems & AI</a></li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div id="contact" className="space-y-3">
-            <p className="text-xs font-bold text-white tracking-wider uppercase">Contact</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-white">Contact</p>
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
                 <Mail size={13} className="text-emerald-400" />
@@ -1770,21 +1750,8 @@ function Footer() {
 
         </div>
 
-        {/* Martin Fowler Quote */}
-        <div className="py-8 text-center border-b border-zinc-900/60 max-w-2xl mx-auto">
-          <p className="italic text-zinc-300 leading-relaxed">
-            "Any fool can write code that a computer can understand. Good programmers write code that humans can understand."
-          </p>
-          <p className="text-[11px] text-zinc-400 mt-1">— Martin Fowler</p>
-        </div>
-
-        {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-400">
-          <p>© 2026 AC: Apex of Champions — All rights reserved.</p>
-          <p className="flex items-center gap-4">
-            <a href="#top" className="hover:text-zinc-300">Privacy Notice</a>
-            <a href="#top" className="hover:text-zinc-300">Terms of Service</a>
-          </p>
+          <p>© 2026 AC: Apex of Champions. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -1793,19 +1760,37 @@ function Footer() {
 
 // --- PROJECT DETAIL MODAL ---
 function ProjectModal({ project, onClose }) {
+  const [activeImageIndex, setActiveImageIndex] = useState(project?.id === 1 ? 1 : 0);
+
+  useEffect(() => {
+    setActiveImageIndex(project?.id === 1 ? 1 : 0);
+  }, [project]);
+
+  useEffect(() => {
+    if (!project) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [project, onClose]);
+
   if (!project) return null;
 
+  const projectImages = project.gallery?.length ? project.gallery : [project.image];
+  const activeImage = projectImages[activeImageIndex] || projectImages[0];
+  const projectLead = project.lead || 'Ken';
+  const projectFacebookUrl = project.facebookUrl || 'https://www.facebook.com/share/p/19KRBGUcJ5/';
+  const showPreviousImage = () => {
+    setActiveImageIndex((currentIndex) => (currentIndex - 1 + projectImages.length) % projectImages.length);
+  };
+  const showNextImage = () => {
+    setActiveImageIndex((currentIndex) => (currentIndex + 1) % projectImages.length);
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl rounded-2xl bg-zinc-950 border border-zinc-800 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute top-5 right-5 text-zinc-400 hover:text-white p-1 rounded-lg bg-zinc-900 border border-zinc-800"
-          aria-label="Close modal"
-        >
-          <X size={18} />
-        </button>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200" onClick={onClose}>
+      <div className="relative w-full max-w-4xl rounded-2xl bg-zinc-950 border border-zinc-800 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(event) => event.stopPropagation()}>
 
         <div className="space-y-4">
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950 text-emerald-400 border border-emerald-500/30">
@@ -1814,12 +1799,40 @@ function ProjectModal({ project, onClose }) {
           <h2 className="text-2xl font-bold text-white tracking-tight">
             {project.title}
           </h2>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm font-semibold text-emerald-400">Lead by {projectLead}</p>
+            <a
+                href={projectFacebookUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="facebook-proof-link"
+              >
+                <img src="/images/facebook.png" alt="" className="h-5 w-5 object-contain" />
+                View Facebook Post
+                <ExternalLink size={13} />
+            </a>
+          </div>
           <p className="text-sm text-zinc-300 leading-relaxed">
             {project.shortDesc}
           </p>
 
-          <div className="rounded-xl overflow-hidden border border-zinc-800">
-            <img src={project.image} alt={project.title} className="w-full h-auto object-cover" />
+          <div className="space-y-3">
+            <div className="relative aspect-video overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
+              <BlindImage src={activeImage} alt={`${project.title} image ${activeImageIndex + 1}`} activeIndex={activeImageIndex} />
+            </div>
+            <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
+              {projectImages.map((image, index) => (
+                <button
+                  type="button"
+                  key={image}
+                  onClick={() => setActiveImageIndex(index)}
+                  className={`aspect-video overflow-hidden rounded-lg border transition ${index === activeImageIndex ? 'border-emerald-400 ring-1 ring-emerald-400/70' : 'border-zinc-800 opacity-70 hover:border-zinc-500 hover:opacity-100'}`}
+                  aria-label={`Show project image ${index + 1}`}
+                >
+                  <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" />
+                </button>
+              ))}
+            </div>
           </div>
 
           <div>
@@ -1833,23 +1846,21 @@ function ProjectModal({ project, onClose }) {
             </div>
           </div>
 
-          <div className="pt-4 flex items-center justify-end gap-3 border-t border-zinc-900">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 rounded-full text-xs font-semibold text-zinc-400 hover:text-white bg-zinc-900"
-            >
-              Close
-            </button>
-            <a
-              href={`mailto:apexofchampions@gmail.com?subject=Inquiry%20about%20${encodeURIComponent(project.title)}`}
-              className="btn-emerald text-xs"
-            >
-              Request Similar Build
-            </a>
-          </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function PageScrollControls() {
+  return (
+    <div className="page-scroll-controls" aria-label="Page navigation">
+      <a href="#top" className="unique-button page-scroll-button page-scroll-button-up" aria-label="Go to Home" title="Home">
+        <Send size={19} />
+      </a>
+      <a href="#page-bottom" className="unique-button page-scroll-button page-scroll-button-down" aria-label="Go to bottom of page" title="Contact">
+        <Send size={19} />
+      </a>
     </div>
   );
 }
@@ -2123,6 +2134,7 @@ export default function App() {
         onOpenChat={() => setChatOpen(true)}
         onOpenBrandSummary={() => setBrandSummaryOpen(true)}
       />
+      <PageScrollControls />
       
       <main>
         <div className="hero-project-stage">
@@ -2141,7 +2153,7 @@ export default function App() {
         />
         <WorkRoadmap />
         <TeamSection />
-        <ReviewsSection />
+        <AchievementsSection />
         <FaqSection />
         <PromoBanner
           onOpenChat={() => setChatOpen(true)}
