@@ -27,6 +27,7 @@ import {
   X
 } from 'lucide-react';
 import './styles.css';
+import { BooksShowcase } from '@/components/ui/books-showcase';
 
 // --- DATA DEFINITIONS ---
 
@@ -36,16 +37,16 @@ const projectsData = [
     title: 'Arduino-Based Barcode Scanner with Facial Recognition System',
     category: 'Embedded AI & Hardware',
     shortDesc: 'Automated student/employee attendance & access control utilizing embedded camera hardware, OpenCV biometric facial recognition, and barcode verification.',
-    image: '/images/barcode-system.jpg',
+    image: './images/barcode-system.jpg',
     gallery: [
-      '/images/barcode-system-1.png',
-      '/images/barcode-system-2.png',
-      '/images/barcode-system-3.png',
-      '/images/barcode-system-4.png',
-      '/images/barcode-system-5.png',
-      '/images/barcode-system-6.png',
-      '/images/barcode-system-7.png',
-      '/images/barcode-system-8.png',
+      './images/barcode-system-1.png',
+      './images/barcode-system-2.png',
+      './images/barcode-system-3.png',
+      './images/barcode-system-4.png',
+      './images/barcode-system-5.png',
+      './images/barcode-system-6.png',
+      './images/barcode-system-7.png',
+      './images/barcode-system-8.png',
     ],
     tech: ['Arduino', 'Python', 'OpenCV', 'Raspberry Pi', 'Biometrics'],
     lead: 'Ken',
@@ -58,8 +59,8 @@ const projectsData = [
     title: 'ASD Learning Application',
     category: 'Assistive EdTech & Mobile',
     shortDesc: 'Visual-based, interactive assistive mobile app crafted specifically for children and learners with Autism Spectrum Disorder to enhance communication and memory.',
-    image: '/images/asd-learning-app.png',
-    gallery: ['/images/ar-1.png', '/images/ar-2.png', '/images/ar-3.png'],
+    image: './images/asd-learning-app.png',
+    gallery: ['./images/ar-1.png', './images/ar-2.png', './images/ar-3.png'],
     tech: ['Flutter', 'Firebase', 'Dart', 'Tailwind', 'UI/UX'],
     contributors: ['KF', 'JT', 'JB'],
     accentColor: '#38bdf8',
@@ -69,8 +70,8 @@ const projectsData = [
     title: 'GenSpe Mobile Game',
     category: 'Interactive 2D Game Design',
     shortDesc: 'Playable gamified educational experience teaching biological and scientific concepts through interactive puzzles, quests, and retention mechanics.',
-    image: '/images/genspe-game.jpg',
-    gallery: ['/images/genspe-1.png', '/images/genspe-2.png', '/images/genspe-3.png'],
+    image: './images/genspe-game.jpg',
+    gallery: ['./images/genspe-1.png', './images/genspe-2.png', './images/genspe-3.png'],
     tech: ['Unity', 'C#', 'Game Design', '2D Physics', 'Mobile'],
     contributors: ['KF', 'JM', 'RL'],
     accentColor: '#fbbf24',
@@ -80,8 +81,8 @@ const projectsData = [
     title: 'Speak-App for Non-Verbal Students',
     category: 'AAC & Assistive Speech',
     shortDesc: 'Augmentative and Alternative Communication (AAC) soundboard tool empowering speech-impaired students with vocal synthesis, tap-to-speak, and picture cards.',
-    image: '/images/speak-app.png',
-    gallery: ['/images/speaksmart-1.png', '/images/speaksmart-2.png', '/images/speaksmart-3.png'],
+    image: './images/speak-app.png',
+    gallery: ['./images/speaksmart-1.png', './images/speaksmart-2.png', './images/speaksmart-3.png'],
     tech: ['Flutter', 'Speech AI', 'Firebase', 'Audio Synth', 'Android'],
     contributors: ['KF', 'NM', 'JT'],
     accentColor: '#a855f7',
@@ -91,8 +92,8 @@ const projectsData = [
     title: 'IGLA Cognitive Training App',
     category: 'Gamified EdTech',
     shortDesc: 'Attention-training and memory enhancement tool featuring specialized pedagogical mini-games designed for cognitive skill development.',
-    image: '/images/igla.png',
-    gallery: ['/images/igla-gallery-1.png', '/images/igla-gallery-2.png', '/images/igla-gallery-3.png'],
+    image: './images/igla.png',
+    gallery: ['./images/igla-gallery-1.png', './images/igla-gallery-2.png', './images/igla-gallery-3.png'],
     tech: ['Flutter', 'Dart', 'UX Research', 'Gamification'],
     contributors: ['KF', 'JB', 'RL'],
     accentColor: '#f43f5e',
@@ -102,8 +103,8 @@ const projectsData = [
     title: 'Digital RSVP & Invitation Platform',
     category: 'Full-Stack Web Experience',
     shortDesc: 'High-conversion interactive event invitation system featuring live guestbook RSVP, countdown timers, Google Maps integration, and photo galleries.',
-    image: '/images/birthday-invitation.png',
-    gallery: ['/images/birthday-gallery-1.png', '/images/birthday-gallery-2.png', '/images/wedding-gallery-1.png'],
+    image: './images/birthday-invitation.png',
+    gallery: ['./images/birthday-gallery-1.png', './images/birthday-gallery-2.png', './images/wedding-gallery-1.png'],
     tech: ['React', 'Next.js', 'Tailwind CSS', 'Vercel', 'PostgreSQL'],
     contributors: ['KF', 'JM', 'JT'],
     accentColor: '#f97316',
@@ -111,26 +112,26 @@ const projectsData = [
 ];
 
 const techStack = [
-  { name: 'React', icon: '/images/react.png' },
-  { name: 'Flutter', icon: '/images/flutter.png' },
-  { name: 'Python', icon: '/images/python.png' },
-  { name: 'Arduino', icon: '/images/arduino.png' },
-  { name: 'ESP32 IoT', icon: '/images/ESP32.png' },
-  { name: 'C# .NET', icon: '/images/csharp.png' },
-  { name: 'C++', icon: '/images/cpp.png' },
-  { name: 'PHP', icon: '/images/php.png' },
-  { name: 'Laravel', icon: '/images/laravel.png' },
-  { name: 'MySQL', icon: '/images/mysql.png' },
-  { name: 'PostgreSQL', icon: '/images/PostgreSQL.png' },
-  { name: 'MongoDB', icon: '/images/MongoDB.png' },
-  { name: 'Firebase', icon: '/images/firebase.png' },
-  { name: 'Unity', icon: '/images/unity.png' },
-  { name: 'Figma', icon: '/images/figma.svg' },
-  { name: 'Android Studio', icon: '/images/android-studio.svg' },
-  { name: 'Postman', icon: '/images/postman.svg' },
-  { name: 'VS Code', icon: '/images/vscode.svg' },
-  { name: 'Vite', icon: '/images/vite.svg' },
-  { name: 'Bootstrap', icon: '/images/bootstrap.svg' },
+  { name: 'React', icon: './images/react.png' },
+  { name: 'Flutter', icon: './images/flutter.png' },
+  { name: 'Python', icon: './images/python.png' },
+  { name: 'Arduino', icon: './images/arduino.png' },
+  { name: 'ESP32 IoT', icon: './images/ESP32.png' },
+  { name: 'C# .NET', icon: './images/csharp.png' },
+  { name: 'C++', icon: './images/cpp.png' },
+  { name: 'PHP', icon: './images/php.png' },
+  { name: 'Laravel', icon: './images/laravel.png' },
+  { name: 'MySQL', icon: './images/mysql.png' },
+  { name: 'PostgreSQL', icon: './images/PostgreSQL.png' },
+  { name: 'MongoDB', icon: './images/MongoDB.png' },
+  { name: 'Firebase', icon: './images/firebase.png' },
+  { name: 'Unity', icon: './images/unity.png' },
+  { name: 'Figma', icon: './images/figma.svg' },
+  { name: 'Android Studio', icon: './images/android-studio.svg' },
+  { name: 'Postman', icon: './images/postman.svg' },
+  { name: 'VS Code', icon: './images/vscode.svg' },
+  { name: 'Vite', icon: './images/vite.svg' },
+  { name: 'Bootstrap', icon: './images/bootstrap.svg' },
 ];
 
 const technicalExpertiseGroups = [
@@ -138,64 +139,64 @@ const technicalExpertiseGroups = [
     title: 'Code Languages',
     description: 'Programming languages used to build app logic, backend features, scripts, and system functionality.',
     items: [
-      { name: 'PHP', icon: '/images/php.png', description: 'Server-side Development' },
-      { name: 'JavaScript', icon: '/images/javascript.png', description: 'Web Interactivity' },
-      { name: 'Python', icon: '/images/python.png', description: 'Programming Language' },
-      { name: 'C#', icon: '/images/csharp.png', description: 'Software Development' },
-      { name: 'Java', icon: '/images/java.png', description: 'Software Development' },
-      { name: 'C++', icon: '/images/cpp.png', description: 'Systems Programming' },
-      { name: 'Kotlin', icon: '/images/kotlin.png', description: 'Android Development' },
-      { name: 'Dart', icon: '/images/dart.svg', description: 'Flutter App Logic' },
+      { name: 'PHP', icon: './images/php.png', description: 'Server-side Development' },
+      { name: 'JavaScript', icon: './images/javascript.png', description: 'Web Interactivity' },
+      { name: 'Python', icon: './images/python.png', description: 'Programming Language' },
+      { name: 'C#', icon: './images/csharp.png', description: 'Software Development' },
+      { name: 'Java', icon: './images/java.png', description: 'Software Development' },
+      { name: 'C++', icon: './images/cpp.png', description: 'Systems Programming' },
+      { name: 'Kotlin', icon: './images/kotlin.png', description: 'Android Development' },
+      { name: 'Dart', icon: './images/dart.svg', description: 'Flutter App Logic' },
     ],
   },
   {
     title: 'Frameworks & Development',
     description: 'Frameworks and engines used for mobile apps, websites, dashboards, and interactive learning systems.',
     items: [
-      { name: 'Flutter', icon: '/images/flutter.png', description: 'Cross-platform Development' },
-      { name: 'Laravel', icon: '/images/laravel.png', description: 'Backend Development' },
-      { name: 'React', icon: '/images/react.png', description: 'Frontend Development' },
-      { name: 'Bootstrap', icon: '/images/bootstrap.svg', description: 'Responsive UI' },
-      { name: 'Vite', icon: '/images/vite.svg', description: 'Frontend Build Tool' },
-      { name: 'Flame Engine', icon: '/images/flame.png', description: 'Game Engine' },
-      { name: 'Unity', icon: '/images/unity.png', description: 'Game Development' },
+      { name: 'Flutter', icon: './images/flutter.png', description: 'Cross-platform Development' },
+      { name: 'Laravel', icon: './images/laravel.png', description: 'Backend Development' },
+      { name: 'React', icon: './images/react.png', description: 'Frontend Development' },
+      { name: 'Bootstrap', icon: './images/bootstrap.svg', description: 'Responsive UI' },
+      { name: 'Vite', icon: './images/vite.svg', description: 'Frontend Build Tool' },
+      { name: 'Flame Engine', icon: './images/flame.png', description: 'Game Engine' },
+      { name: 'Unity', icon: './images/unity.png', description: 'Game Development' },
     ],
   },
   {
     title: 'Database & Backend',
     description: 'Storage, authentication, APIs, and backend services that keep systems connected and reliable.',
     items: [
-      { name: 'Firebase', icon: '/images/firebase.png', description: 'Backend Services' },
-      { name: 'MySQL', icon: '/images/mysql.png', description: 'Database Systems' },
-      { name: 'PostgreSQL', icon: '/images/PostgreSQL.png', description: 'Relational Database' },
-      { name: 'MongoDB', icon: '/images/MongoDB.png', description: 'NoSQL Database' },
-      { name: 'SQLite', icon: '/images/sqlite.svg', description: 'Local App Storage' },
-      { name: 'REST API', icon: '/images/rest-api.svg', description: 'System Integration' },
+      { name: 'Firebase', icon: './images/firebase.png', description: 'Backend Services' },
+      { name: 'MySQL', icon: './images/mysql.png', description: 'Database Systems' },
+      { name: 'PostgreSQL', icon: './images/PostgreSQL.png', description: 'Relational Database' },
+      { name: 'MongoDB', icon: './images/MongoDB.png', description: 'NoSQL Database' },
+      { name: 'SQLite', icon: './images/sqlite.svg', description: 'Local App Storage' },
+      { name: 'REST API', icon: './images/rest-api.svg', description: 'System Integration' },
     ],
   },
   {
     title: 'Hardware & Embedded',
     description: 'Physical computing and connected-device tools for prototypes, automation, IoT, and engineering projects.',
     items: [
-      { name: 'Arduino', icon: '/images/arduino.png', description: 'Embedded Systems' },
-      { name: 'Raspberry Pi', icon: '/images/raspberry-pi.svg', description: 'Single-board Computing' },
-      { name: 'ESP32', icon: '/images/ESP32.png', description: 'IoT Microcontroller' },
-      { name: 'IoT', icon: '/images/iot.svg', description: 'Connected Devices' },
-      { name: 'Sensors & Automation', icon: '/images/sensors-automation.svg', description: 'Monitoring & Control' },
+      { name: 'Arduino', icon: './images/arduino.png', description: 'Embedded Systems' },
+      { name: 'Raspberry Pi', icon: './images/raspberry-pi.svg', description: 'Single-board Computing' },
+      { name: 'ESP32', icon: './images/ESP32.png', description: 'IoT Microcontroller' },
+      { name: 'IoT', icon: './images/iot.svg', description: 'Connected Devices' },
+      { name: 'Sensors & Automation', icon: './images/sensors-automation.svg', description: 'Monitoring & Control' },
     ],
   },
   {
     title: 'Design & Development Tools',
     description: 'Creative, coding, testing, and collaboration tools used to design, build, document, and deliver projects.',
     items: [
-      { name: 'Canva', icon: '/images/canva.svg', description: 'Graphic Design' },
-      { name: 'Adobe Illustrator', icon: '/images/Adobe illustrator.png', description: 'Vector Design' },
-      { name: 'Photoshop', icon: '/images/Photoshop.png', description: 'Image Editing' },
-      { name: 'VS Code', icon: '/images/vscode.svg', description: 'Code Editor' },
-      { name: 'Android Studio', icon: '/images/android-studio.svg', description: 'Android Tooling' },
-      { name: 'GitHub', icon: '/images/github.png', description: 'Version Control' },
-      { name: 'Postman', icon: '/images/postman.svg', description: 'API Testing' },
-      { name: 'Figma', icon: '/images/figma.svg', description: 'UI/UX Prototyping' },
+      { name: 'Canva', icon: './images/canva.svg', description: 'Graphic Design' },
+      { name: 'Adobe Illustrator', icon: './images/Adobe illustrator.png', description: 'Vector Design' },
+      { name: 'Photoshop', icon: './images/Photoshop.png', description: 'Image Editing' },
+      { name: 'VS Code', icon: './images/vscode.svg', description: 'Code Editor' },
+      { name: 'Android Studio', icon: './images/android-studio.svg', description: 'Android Tooling' },
+      { name: 'GitHub', icon: './images/github.png', description: 'Version Control' },
+      { name: 'Postman', icon: './images/postman.svg', description: 'API Testing' },
+      { name: 'Figma', icon: './images/figma.svg', description: 'UI/UX Prototyping' },
     ],
   },
 ];
@@ -204,55 +205,55 @@ const teamMembers = [
   {
     name: 'Engr. Nonito Molijon Jr.',
     role: 'Founder / CEO',
-    image: '/images/nonito.jpg',
+    image: './images/nonito.jpg',
     description: 'Founder / CEO, Computer Engineer, Researcher, Designer, Programmer, and Virtual Assistant. Leads the company and team, guides project direction, manages client collaboration, supervises research and planning, and drives business growth and innovation.',
   },
   {
     name: 'Ken Chester Felongco',
     role: 'CTO / Lead Developer',
-    image: '/images/ken.png',
+    image: './images/ken.png',
     description: 'Chief Technology Officer and Lead Developer specializing in full-stack systems, backend development, databases, REST APIs, Firebase, UI/UX implementation, scalable architecture, technical direction, project planning, and code quality.',
   },
   {
     name: 'Junelyn Bertudazo',
     role: 'Finance & HR Officer',
-    image: '/images/Junelyn.png',
+    image: './images/Junelyn.png',
     description: 'Finance Manager and Human Resource Officer with a Professional Teacher background. Manages finance records, payroll, employee compensation, applicant screening, documentation, attendance, recruitment, and administrative coordination.',
   },
   {
     name: 'Ronnel Labata',
     role: 'Senior Developer',
-    image: '/images/ronnel.png',
+    image: './images/ronnel.png',
     description: 'Senior Developer and Hardware Specialist working across web and mobile applications, IoT solutions, embedded systems, device integration, sensors, automation, hardware prototyping, troubleshooting, and system implementation.',
   },
   {
     name: 'JannLemor Malakad',
     role: 'Web Developer',
-    image: '/images/jannlemor.png',
+    image: './images/jannlemor.png',
     description: 'Senior Web Developer specializing in web systems, backend development, database management, API integration, system functionality, performance, security, and reliable software implementation.',
   },
   {
     name: 'John Paul Terania',
     role: 'UI/UX Designer',
-    image: '/images/john-paul-terania.png',
+    image: './images/john-paul-terania.png',
     description: 'UI/UX and Graphic Designer specializing in user-friendly app and system interfaces, wireframes, prototypes, visual branding, icons, layouts, and digital graphics that strengthen the team\'s visual identity.',
   },
   {
     name: 'Eljay',
     role: 'Frontend Developer',
-    image: '/images/eljay.png',
+    image: './images/eljay.png',
     description: 'Junior Developer specializing in responsive interfaces with React/Vite, Bootstrap, and JavaScript. Focuses on component-based UI, UI/UX implementation, API integration, state management, and cross-browser experiences.',
   },
   {
     name: 'Madel',
     role: 'Quality Assurance',
-    image: '/images/madel.png',
+    image: './images/madel.png',
     description: 'Junior Developer supporting frontend development, responsive web design, UI implementation, feature testing, documentation, clean interfaces, and collaborative software development with detail-oriented execution.',
   },
   {
     name: 'Nachie',
     role: 'Project Coordinator',
-    image: '/images/nachie.png',
+    image: './images/nachie.png',
     description: 'Administrative and Marketing Officer supporting team coordination, internal communication, marketing activities, records management, client assistance, project documentation, promotions, and smooth administrative operations.',
   },
 ];
@@ -378,16 +379,21 @@ function SplashScreen() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-5 bg-[#09090b] animate-splash-out pointer-events-none"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#09090b] animate-splash-out pointer-events-none"
     >
-      <div className="flex items-center justify-center">
-        <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-emerald-500/30 bg-zinc-900 shadow-[0_0_18px_rgba(16,185,129,0.18)]">
-          <img src="/images/logo.jpg" alt="AC Logo" className="h-full w-full object-cover" />
-        </div>
+      <div className="loader-wrapper">
+        <span className="loader-letter">L</span>
+        <span className="loader-letter">o</span>
+        <span className="loader-letter">a</span>
+        <span className="loader-letter">d</span>
+        <span className="loader-letter">i</span>
+        <span className="loader-letter">n</span>
+        <span className="loader-letter">g</span>
+
+        <div className="loader-bg-1" />
+        <div className="loader-bg-2" />
+        <div className="loader" />
       </div>
-      <span className="h-0.5 w-32 overflow-hidden rounded-full bg-zinc-800">
-        <span className="block h-full w-1/3 rounded-full bg-emerald-500 animate-splash-bar motion-reduce:animate-none" />
-      </span>
     </div>
   );
 }
@@ -478,7 +484,7 @@ function Navbar({ onOpenChat, onOpenBrandSummary }) {
               preload="auto"
               aria-hidden="true"
             >
-              <source src="/images/animation/animation.mp4" type="video/mp4" />
+              <source src="./images/animation/animation.mp4" type="video/mp4" />
             </video>
             <span className="nav-brand-core">
               <span className="nav-brand-ac">AC</span>
@@ -689,165 +695,161 @@ function BlindImage({ src, alt, activeIndex }) {
   );
 }
 
-// --- 3D COVERFLOW FEATURED PROJECTS ---
-const carouselProjects = [...projectsData, ...projectsData];
+// --- 3D BOOKS SHOWCASE FEATURED PROJECTS ---
+const projectBooks = projectsData.map((project) => ({
+  id: String(project.id),
+  title: project.title,
+  author: `Lead by ${project.lead || 'Ken'}`,
+  year: '2024',
+  stars: 5,
+  desc: project.shortDesc,
+  category: project.category,
+  lead: project.lead || 'Ken',
+  facebookUrl: project.facebookUrl || 'https://www.facebook.com/share/p/19KRBGUcJ5/',
+  tech: project.tech,
+  gallery: project.gallery,
+  accentColor: project.accentColor || '#10b981',
+  chapters: project.tech,
+  edge: project.accentColor || '#10b981',
+  spineBg: '#111726',
+  spineInk: '#ffffff',
+  spineFont: '700 36px sans-serif',
+  backBg: '#0f1420',
+  backInk: '230,230,230',
+  images: {
+    front: project.image,
+    back: project.gallery?.[0] || project.image,
+  },
+  front: (ctx, w, h) => {
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
+    bgGrad.addColorStop(0, '#162033');
+    bgGrad.addColorStop(0.5, '#0d1422');
+    bgGrad.addColorStop(1, '#080c16');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, w, h);
 
-function ProjectsCoverflow({ onSelectProject }) {
-  const [isPaused, setIsPaused] = useState(false);
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const cardRefs = useRef([]);
-  const orbitRotationRef = useRef(0);
-  const previousFrameTimeRef = useRef(0);
+    // Accent top banner
+    ctx.fillStyle = project.accentColor || '#10b981';
+    ctx.fillRect(0, 0, w, 20);
 
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-    let frameId = 0;
+    // Category tag pill
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(80, 80, w - 160, 64, 32);
+    else ctx.fillRect(80, 80, w - 160, 64);
+    ctx.fill();
+    ctx.fillStyle = project.accentColor || '#10b981';
+    ctx.font = '700 24px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(project.category.toUpperCase(), w / 2, 122);
 
-    const updateCoverflow = (timestamp) => {
-      const section = sectionRef.current;
-      const track = trackRef.current;
-      if (!section || !track) return;
+    // Title
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 54px sans-serif';
+    const words = project.title.split(' ');
+    let line = '';
+    const lines = [];
+    words.forEach((word) => {
+      const test = line ? line + ' ' + word : word;
+      if (ctx.measureText(test).width > w * 0.82 && line) {
+        lines.push(line);
+        line = word;
+      } else line = test;
+    });
+    if (line) lines.push(line);
+    const startY = 320;
+    lines.forEach((l, i) => ctx.fillText(l, w / 2, startY + i * 68));
 
-      if (previousFrameTimeRef.current) {
-        const elapsed = timestamp - previousFrameTimeRef.current;
-        if (!isPaused) orbitRotationRef.current += elapsed * 0.006;
-      }
-      previousFrameTimeRef.current = timestamp;
+    // Accent divider
+    ctx.strokeStyle = project.accentColor || '#10b981';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(w / 2 - 100, startY + lines.length * 68 + 24);
+    ctx.lineTo(w / 2 + 100, startY + lines.length * 68 + 24);
+    ctx.stroke();
 
-      const revealProgress = Math.min(
-        Math.max(window.scrollY / (window.innerHeight * 0.85), 0),
-        1
-      );
-      const rotation = -revealProgress * 150 + orbitRotationRef.current;
-      section.style.setProperty('--project-reveal', revealProgress);
-      track.style.transform = `rotateY(${rotation}deg)`;
+    // Lead
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '600 32px sans-serif';
+    ctx.fillText(`Lead by ${project.lead || 'Ken'}`, w / 2, startY + lines.length * 68 + 84);
 
-      cardRefs.current.forEach((card, index) => {
-        if (!card) return;
-        const baseAngle = (index / carouselProjects.length) * 360;
-        const rawAngle = baseAngle + rotation;
-        const angle = ((rawAngle + 180) % 360 + 360) % 360 - 180;
-        const frontness = Math.max(0, Math.cos((angle * Math.PI) / 180));
-        card.style.setProperty('--card-scale', `${0.78 + frontness * 0.22}`);
-        card.style.setProperty('--card-opacity', `${0.35 + frontness * 0.65}`);
-        card.style.setProperty('--card-brightness', `${0.48 + frontness * 0.52}`);
-        card.style.setProperty('--card-blur', '0px');
-      });
+    // Tech tags
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.font = '500 24px monospace';
+    ctx.fillText(project.tech.slice(0, 4).join(' • '), w / 2, h - 140);
 
-      frameId = requestAnimationFrame(updateCoverflow);
-    };
+    // Brand footer
+    ctx.fillStyle = project.accentColor || '#10b981';
+    ctx.font = '800 26px sans-serif';
+    ctx.fillText('AC: APEX OF CHAMPIONS', w / 2, h - 80);
+  },
+  project: project,
+}));
 
-    frameId = requestAnimationFrame(updateCoverflow);
-    return () => cancelAnimationFrame(frameId);
-  }, [isPaused]);
+function FeaturedProjectsShowcase({ onSelectProject }) {
+  const [activeProject, setActiveProject] = useState(projectsData[0]);
 
   return (
-    <section ref={sectionRef} id="projects" className="projects-layer py-20 lg:py-28 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <div className="flex items-end justify-between">
+    <section id="projects" className="projects-layer py-16 lg:py-24 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Portfolio</p>
             <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight">
               Featured Projects
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-zinc-400">
-              A few systems, apps, and experiences we have built from first sketch to launch.
+              A few systems, apps, and experiences we have built from first sketch to launch. Click any 3D book to open its interactive detail view, tech stack, and full modal specs.
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <a
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectProject(projectsData[0]);
-              }}
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 hover:text-white transition-colors"
+            <button
+              type="button"
+              onClick={() => onSelectProject(activeProject || projectsData[0])}
+              className="inline-flex items-center gap-2 rounded-xl bg-zinc-900/90 px-4 py-2.5 text-xs font-medium text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/15 hover:border-emerald-500/60 transition-all shadow-lg cursor-pointer"
             >
-              View details <ArrowUpRight size={14} />
-            </a>
+              View project details modal <ArrowUpRight size={14} />
+            </button>
           </div>
         </div>
       </div>
 
-      {/* 3D Coverflow Perspective Container */}
-      <div
-        className="coverflow-container w-full max-w-7xl mx-auto py-6"
-        style={{ height: '540px' }}
-      >
-        <div ref={trackRef} className={`coverflow-track ${isPaused ? 'is-paused' : ''}`}>
-          {carouselProjects.map((project, index) => {
-            return (
-              <div
-                key={`${project.id}-${index}`}
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-                onFocus={() => setIsPaused(true)}
-                onBlur={() => setIsPaused(false)}
-                onClick={() => onSelectProject(project)}
-                ref={(node) => {
-                  cardRefs.current[index] = node;
-                }}
-                className="coverflow-card group"
-                style={{
-                  '--position': index + 1,
-                  '--quantity': carouselProjects.length,
-                  '--project-delay': `${index * 70}ms`
-                }}
-              >
-                {/* Ambient dynamic backlight glow behind active card */}
-                <div className="card-ambient-glow" />
-
-                {/* Main Card */}
-                <div
-                  className="project-card-surface w-full h-full rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800/90 relative flex flex-col justify-end p-3 shadow-2xl"
-                  style={{ '--project-delay': `${index * 90}ms` }}
-                >
-                  
-                  {/* Project artwork stays inside each rotating card */}
-                  <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-
-                  {/* Gradient Overlay — sits above blind slats (z-index 6) */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" style={{ zIndex: 6 }} />
-
-                  {/* Keep the title readable while the full details remain hover-only */}
-                  <div className="absolute inset-x-0 bottom-0 p-2.5 z-[7] bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:opacity-0 transition-opacity duration-200">
-                    <h4 className="project-card-title">{project.title}</h4>
-                  </div>
-
-                  {/* Detailed card overlay on hover */}
-                  <div className="project-hover-details" style={{ zIndex: 11 }}>
-                    <p className="project-card-category">Featured</p>
-                    <h4 className="project-card-title">{project.title}</h4>
-                    <p className="project-card-desc">{project.shortDesc}</p>
-                    <div className="project-card-tags">
-                      {project.tech.map((technology) => (
-                        <span key={technology} className="project-card-tag">
-                          {technology}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* Reflection underneath card */}
-                <div className="coverflow-reflection">
-                  <img
-                    src={project.image}
-                    alt=""
-                    className="w-full h-full object-cover filter brightness-75"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#09090b]" />
-                </div>
-              </div>
-            );
-          })}
+      {/* 3D Books Showcase Perspective Container */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative h-[660px] sm:h-[720px] lg:h-[780px] w-full rounded-3xl overflow-hidden border border-zinc-800/80 bg-[#090d16]/95 shadow-[0_30px_100px_rgba(0,0,0,0.85)]">
+          <BooksShowcase
+            books={projectBooks}
+            heroTitle="PORTFOLIO"
+            navTitle="AC APEX • FEATURED PROJECTS"
+            showNav={true}
+            showDetailPanel={true}
+            showCarousel={true}
+            onBookSelect={(book) => {
+              if (book?.project) setActiveProject(book.project);
+            }}
+            onOpenModal={(project) => {
+              onSelectProject(project);
+            }}
+            themeColors={{
+              navy: '#090d16',
+              pink: '#10b981',
+              cream: '#ffffff',
+              lav: '#94a3b8',
+              peri: '#059669',
+              bgDark: '#090d16',
+              bgLight: '#090d16',
+              foregroundDark: '#fafafa',
+              foregroundLight: '#fafafa',
+            }}
+            className="h-full w-full"
+          />
         </div>
       </div>
     </section>
   );
 }
+
+const ProjectsCoverflow = FeaturedProjectsShowcase;
 
 // --- SKILLS & TECHNOLOGIES INFINITE MARQUEE ---
 function SkillsMarquee() {
@@ -1004,7 +1006,7 @@ function WhatWeCanBuild({ onOpenChat }) {
               <div className="relative w-full max-w-[300px] h-[460px] flex-none rounded-[1.6rem] overflow-hidden bg-zinc-950 border border-white/20 shadow-2xl">
                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 w-8 h-2 rounded-full bg-black/80 border border-white/30" />
                 <div className="h-[62%] relative overflow-hidden bg-gradient-to-br from-emerald-700 via-emerald-500 to-zinc-950">
-                  <img src="/images/nonito.jpg" alt="Engr. Nonito Molijon Jr." className="w-full h-full object-cover object-top" />
+                  <img src="./images/nonito.jpg" alt="Engr. Nonito Molijon Jr." className="w-full h-full object-cover object-top" />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-emerald-500/10 to-transparent" />
                   {capabilities.map(({ icon: ServiceIcon, title }, index) => (
                     <div
@@ -1231,116 +1233,230 @@ function WorkRoadmap() {
 
 // --- MEET OUR TEAM ---
 function TeamSection() {
-  const teamRailRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayedIndex, setDisplayedIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [memberVisible, setMemberVisible] = useState(true);
   const [selectedMember, setSelectedMember] = useState(null);
+  const total = teamMembers.length;
 
-  const scrollTeamRail = (direction) => {
-    teamRailRef.current?.scrollBy({
-      left: direction * 320,
-      behavior: 'smooth',
-    });
+  const currentIndexRef = useRef(currentIndex);
+  const isAnimatingRef = useRef(isAnimating);
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+    isAnimatingRef.current = isAnimating;
+  }, [currentIndex, isAnimating]);
+
+  const updateCarousel = (newIndex) => {
+    if (isAnimatingRef.current) return;
+    setIsAnimating(true);
+
+    const next = (newIndex + total) % total;
+    setCurrentIndex(next);
+    setMemberVisible(false);
+
+    setTimeout(() => {
+      setDisplayedIndex(next);
+      setMemberVisible(true);
+    }, 280);
+
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 750);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        updateCarousel(currentIndexRef.current - 1);
+      } else if (e.key === 'ArrowRight') {
+        updateCarousel(currentIndexRef.current + 1);
+      }
+    };
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleTouchStart = (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      const swipeThreshold = 50;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          updateCarousel(currentIndexRef.current + 1);
+        } else {
+          updateCarousel(currentIndexRef.current - 1);
+        }
+      }
+    };
+
+    const sectionEl = document.getElementById('team');
+    if (sectionEl) {
+      sectionEl.addEventListener('touchstart', handleTouchStart, { passive: true });
+      sectionEl.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      if (sectionEl) {
+        sectionEl.removeEventListener('touchstart', handleTouchStart);
+        sectionEl.removeEventListener('touchend', handleTouchEnd);
+      }
+    };
+  }, []);
+
+  const getCardClass = (offset, total) => {
+    if (offset === 0) return 'center';
+    if (offset === 1) return 'right-1';
+    if (offset === 2) return 'right-2';
+    if (offset === total - 1) return 'left-1';
+    if (offset === total - 2) return 'left-2';
+    return 'hidden';
+  };
+
+  const currentMember = teamMembers[displayedIndex] || teamMembers[0];
+
   return (
-    <section id="team" className="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="mb-12">
-        <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Talent</p>
-        <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-          Meet Our Team
-        </h2>
+    <section id="team" className="team-carousel-section relative w-full py-20 overflow-hidden">
+      {/* Giant Stylized Watermark Background */}
+      <div className="team-watermark-title" aria-hidden="true">
+        OUR TEAM
       </div>
 
-      <div className="team-cards-slider">
-        <button
-          type="button"
-          className="team-rail-arrow team-rail-arrow-left"
-          onClick={() => scrollTeamRail(-1)}
-          aria-label="Show previous team members"
-        >
-          <ChevronLeft size={20} />
-        </button>
-
-        <div ref={teamRailRef} className="team-cards-row">
-        {teamMembers.map((member, index) => {
-          const initials = member.name
-            .split(' ')
-            .map((part) => part[0])
-            .slice(0, 2)
-            .join('')
-            .toUpperCase();
-
-          return (
-            <div key={`${member.name}-${index}`} className="team-card-shell">
-              <article className="team-social-card group" aria-label={member.name}>
-                <div className="team-card-background">
-                  <img src={member.image} alt={member.name} loading="lazy" />
-                </div>
-
-                <div className="team-card-glow" aria-hidden="true" />
-
-                <div className="box box1" aria-hidden="true">
-                  <span className="icon">
-                    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" className="svg">
-                      <path d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z" />
-                    </svg>
-                  </span>
-                </div>
-
-                <div className="box box2" aria-hidden="true">
-                  <span className="icon">
-                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" className="svg">
-                      <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" />
-                    </svg>
-                  </span>
-                </div>
-
-                <div className="box box3" aria-hidden="true">
-                  <span className="icon">
-                    <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg" className="svg">
-                      <path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z" />
-                    </svg>
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  className="box box4 team-info-box"
-                  onClick={() => setSelectedMember(member)}
-                  aria-label={`View information about ${member.name}`}
-                >
-                  <span className="team-info-mark">i</span>
-                  <span className="team-info-label">Info</span>
-                </button>
-
-                <div className="team-card-name-wrap">
-                  <div className="flex items-center gap-1.5">
-                    <h3 className="text-sm font-bold text-white tracking-tight truncate">
-                      {member.name}
-                    </h3>
-                    <span className="text-sky-400 shrink-0" title="Verified Member">
-                      <CheckCircle2 size={14} className="fill-sky-400 text-zinc-950" />
-                    </span>
-                  </div>
-                  <p className="text-xs text-zinc-200/80 truncate">
-                    {member.role}
-                  </p>
-                </div>
-              </article>
-            </div>
-          );
-        })}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-6">
+          <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Talent</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight">
+            Meet Our Team
+          </h2>
+          <p className="mt-2 text-sm text-zinc-400 max-w-lg mx-auto">
+            Visionary leaders, skilled engineers, and creative thinkers driving innovative digital solutions.
+          </p>
         </div>
 
-        <button
-          type="button"
-          className="team-rail-arrow team-rail-arrow-right"
-          onClick={() => scrollTeamRail(1)}
-          aria-label="Show next team members"
+        {/* 3D Carousel Stage */}
+        <div className="team-3d-container">
+          <button
+            type="button"
+            className="team-3d-arrow left"
+            onClick={() => updateCarousel(currentIndex - 1)}
+            aria-label="Previous team member"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <div className="team-3d-track">
+            {teamMembers.map((member, i) => {
+              const offset = (i - currentIndex + total) % total;
+              const cls = getCardClass(offset, total);
+              const isCenter = cls === 'center';
+
+              return (
+                <div
+                  key={`${member.name}-${i}`}
+                  className={`team-3d-card ${cls}`}
+                  onClick={() => {
+                    if (isCenter) {
+                      setSelectedMember(member);
+                    } else {
+                      updateCarousel(i);
+                    }
+                  }}
+                  title={isCenter ? `Click to view ${member.name}'s profile` : `View ${member.name}`}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    loading={i < 3 ? 'eager' : 'lazy'}
+                  />
+                  {isCenter && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+                      <span className="text-xs uppercase tracking-wider text-emerald-400 font-medium">Click for bio & info</span>
+                      <p className="text-sm font-bold text-white truncate">{member.name}</p>
+                    </div>
+                  )}
+                  {isCenter && (
+                    <div className="absolute top-3 right-3 bg-emerald-500/80 backdrop-blur-md text-zinc-950 p-1 rounded-full shadow-lg">
+                      <CheckCircle2 size={16} className="fill-emerald-400 text-zinc-950" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            className="team-3d-arrow right"
+            onClick={() => updateCarousel(currentIndex + 1)}
+            aria-label="Next team member"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Selected Member Info */}
+        <div
+          className="team-3d-info transition-opacity duration-300"
+          style={{ opacity: memberVisible ? 1 : 0 }}
         >
-          <ChevronRight size={20} />
-        </button>
+          <div className="team-3d-name-container">
+            <span className="team-3d-line-left" aria-hidden="true" />
+            <h3 className="team-3d-name">
+              <span>{currentMember.name}</span>
+              <span className="text-sky-400 shrink-0" title="Verified Member">
+                <CheckCircle2 size={20} className="fill-sky-400 text-zinc-950 inline" />
+              </span>
+            </h3>
+            <span className="team-3d-line-right" aria-hidden="true" />
+          </div>
+
+          <p className="team-3d-role">
+            {currentMember.role}
+          </p>
+
+          <p className="team-3d-bio">
+            {currentMember.description}
+          </p>
+
+          <div className="mt-4 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => setSelectedMember(currentMember)}
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-500/60 rounded-full transition-all duration-200 shadow-sm"
+            >
+              <span>View Full Profile</span>
+              <ArrowUpRight size={14} />
+            </button>
+          </div>
+        </div>
+
+        {/* Dots Navigation */}
+        <div className="team-3d-dots">
+          {teamMembers.map((member, i) => (
+            <button
+              key={`dot-${member.name}-${i}`}
+              type="button"
+              className={`team-3d-dot${i === currentIndex ? ' active' : ''}`}
+              onClick={() => updateCarousel(i)}
+              aria-label={`Go to ${member.name}`}
+            />
+          ))}
+        </div>
       </div>
 
+      {/* Member Full Detail Modal */}
       {selectedMember && (
         <div className="team-detail-backdrop" onClick={() => setSelectedMember(null)}>
           <article className="team-detail-panel" onClick={(event) => event.stopPropagation()}>
@@ -1583,11 +1699,11 @@ const achievements = [
 ];
 
 const achievementPhotos = [
-  { src: '/images/1st.jpg', alt: 'AC recognition portrait' },
-  { src: '/images/1st1.jpg', alt: 'AC achievement event' },
-  { src: '/images/ac-team.png', alt: 'AC team achievement' },
-  { src: '/images/barcode-system.jpg', alt: 'Barcode and facial recognition system' },
-  { src: '/images/genspe-game.jpg', alt: 'GenSpe educational game project' },
+  { src: './images/1st.jpg', alt: 'AC recognition portrait' },
+  { src: './images/1st1.jpg', alt: 'AC achievement event' },
+  { src: './images/ac-team.png', alt: 'AC team achievement' },
+  { src: './images/barcode-system.jpg', alt: 'Barcode and facial recognition system' },
+  { src: './images/genspe-game.jpg', alt: 'GenSpe educational game project' },
 ];
 
 function AchievementsSection() {
@@ -1706,7 +1822,7 @@ function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="relative h-7 w-7 overflow-hidden rounded-lg border border-emerald-500/30 bg-zinc-900 shadow-[0_0_18px_rgba(16,185,129,0.18)]">
-                <img src="/images/logo.jpg" alt="AC Logo" className="h-full w-full object-cover" />
+                <img src="./images/logo.jpg" alt="AC Logo" className="h-full w-full object-cover" />
               </div>
               <span className="text-lg font-bold tracking-tight text-white font-display">
                 AC: Apex of Champions
@@ -1791,6 +1907,20 @@ function ProjectModal({ project, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200" onClick={onClose}>
       <div className="relative w-full max-w-4xl rounded-2xl bg-zinc-950 border border-zinc-800 p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto" onClick={(event) => event.stopPropagation()}>
+        <button
+          type="button"
+          onClick={onClose}
+          className="group absolute right-4 top-4 z-10 flex h-14 w-48 items-center justify-center rounded-2xl bg-white text-center text-xl font-semibold text-black shadow-lg transition duration-500 hover:brightness-105"
+          aria-label="Close project viewer"
+        >
+          <div className="absolute left-1 top-[4px] z-10 flex h-12 w-1/4 items-center justify-center rounded-xl bg-green-400 duration-500 group-hover:w-[184px]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="25px" width="25px" aria-hidden="true">
+              <path d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z" fill="#000000" />
+              <path d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z" fill="#000000" />
+            </svg>
+          </div>
+          <p className="translate-x-2">Go Back</p>
+        </button>
 
         <div className="space-y-4">
           <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950 text-emerald-400 border border-emerald-500/30">
@@ -1807,7 +1937,7 @@ function ProjectModal({ project, onClose }) {
                 rel="noreferrer"
                 className="facebook-proof-link"
               >
-                <img src="/images/facebook.png" alt="" className="h-5 w-5 object-contain" />
+                <img src="./images/facebook.png" alt="" className="h-5 w-5 object-contain" />
                 View Facebook Post
                 <ExternalLink size={13} />
             </a>
@@ -1819,6 +1949,24 @@ function ProjectModal({ project, onClose }) {
           <div className="space-y-3">
             <div className="relative aspect-video overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
               <BlindImage src={activeImage} alt={`${project.title} image ${activeImageIndex + 1}`} activeIndex={activeImageIndex} />
+
+              <button
+                type="button"
+                onClick={showPreviousImage}
+                className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white shadow-lg backdrop-blur-sm transition hover:border-emerald-400/60 hover:bg-emerald-500/15"
+                aria-label="Previous project image"
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              <button
+                type="button"
+                onClick={showNextImage}
+                className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white shadow-lg backdrop-blur-sm transition hover:border-emerald-400/60 hover:bg-emerald-500/15"
+                aria-label="Next project image"
+              >
+                <ChevronRight size={20} />
+              </button>
             </div>
             <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
               {projectImages.map((image, index) => (
@@ -1890,10 +2038,10 @@ function ChatAssistant({ isOpen, setIsOpen }) {
               preload="auto"
               aria-hidden="true"
             >
-              <source src="/images/animation/animation.mp4" type="video/mp4" />
+              <source src="./images/animation/animation.mp4" type="video/mp4" />
             </video>
             <span className="chat-avatar-core">
-              <img src="/images/logo.jpg" alt="AC Logo" className="chat-avatar-logo" />
+              <img src="./images/logo.jpg" alt="AC Logo" className="chat-avatar-logo" />
             </span>
           </span>
           <span className="chat-online-dot" aria-label="Online" />
@@ -1915,7 +2063,7 @@ function ChatAssistant({ isOpen, setIsOpen }) {
                   preload="auto"
                   aria-hidden="true"
                 >
-                  <source src="/images/animation/animation.mp4" type="video/mp4" />
+                  <source src="./images/animation/animation.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-[3px] flex items-center justify-center rounded-full bg-zinc-950/90">
                   <span className="text-[0.5rem] font-black tracking-[-0.14em] text-white">AC</span>
@@ -2063,7 +2211,7 @@ function BrandSummaryModal({ isOpen, onClose, onOpenChat }) {
                 preload="auto"
                 aria-hidden="true"
               >
-                <source src="/images/animation/animation.mp4" type="video/mp4" />
+                <source src="./images/animation/animation.mp4" type="video/mp4" />
               </video>
               <span className="brand-summary-core">
                 <span className="brand-summary-ac">AC</span>
