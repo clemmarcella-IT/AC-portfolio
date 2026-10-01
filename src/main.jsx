@@ -28,6 +28,9 @@ import {
 } from 'lucide-react';
 import './styles.css';
 import { BooksShowcase } from '@/components/ui/books-showcase';
+import { ModernCarousel } from '@/components/ui/modern-carousel';
+import { BackgroundBoxes } from '@/components/ui/background-boxes';
+import { ThreeDImageRing } from '@/components/ui/three-d-image-ring';
 
 // --- DATA DEFINITIONS ---
 
@@ -257,6 +260,13 @@ const teamMembers = [
     description: 'Administrative and Marketing Officer supporting team coordination, internal communication, marketing activities, records management, client assistance, project documentation, promotions, and smooth administrative operations.',
   },
 ];
+
+const homeGalleryItems = teamMembers.map((member) => ({
+  image: member.image,
+  label: member.name,
+  role: member.role,
+  description: member.description,
+}));
 
 const workflowSteps = [
   {
@@ -585,11 +595,19 @@ function HeroSection({ onOpenChat, onSelectProject }) {
 
   return (
     <section ref={heroRef} id="top" className="home-layer hero-section relative pt-36 sm:pt-44 pb-20 lg:pb-32 overflow-hidden">
+      <div className="hero-gallery-layer">
+        <ThreeDImageRing
+          items={homeGalleryItems}
+          defaultIndex={2}
+          autoRotate
+          duration={30}
+        />
+      </div>
       {/* Background Ambient Lights */}
       <div className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[500px] glow-emerald opacity-60 blur-3xl -z-10" />
       <div className="pointer-events-none absolute top-40 right-10 w-[400px] h-[400px] glow-subtle opacity-50 blur-2xl -z-10" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full hero-content-layer">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Text & Actions */}
@@ -1233,254 +1251,14 @@ function WorkRoadmap() {
 
 // --- MEET OUR TEAM ---
 function TeamSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayedIndex, setDisplayedIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [memberVisible, setMemberVisible] = useState(true);
-  const [selectedMember, setSelectedMember] = useState(null);
-  const total = teamMembers.length;
-
-  const currentIndexRef = useRef(currentIndex);
-  const isAnimatingRef = useRef(isAnimating);
-
-  useEffect(() => {
-    currentIndexRef.current = currentIndex;
-    isAnimatingRef.current = isAnimating;
-  }, [currentIndex, isAnimating]);
-
-  const updateCarousel = (newIndex) => {
-    if (isAnimatingRef.current) return;
-    setIsAnimating(true);
-
-    const next = (newIndex + total) % total;
-    setCurrentIndex(next);
-    setMemberVisible(false);
-
-    setTimeout(() => {
-      setDisplayedIndex(next);
-      setMemberVisible(true);
-    }, 280);
-
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, 750);
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowLeft') {
-        updateCarousel(currentIndexRef.current - 1);
-      } else if (e.key === 'ArrowRight') {
-        updateCarousel(currentIndexRef.current + 1);
-      }
-    };
-
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    const handleTouchStart = (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    };
-
-    const handleTouchEnd = (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      const swipeThreshold = 50;
-
-      if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-          updateCarousel(currentIndexRef.current + 1);
-        } else {
-          updateCarousel(currentIndexRef.current - 1);
-        }
-      }
-    };
-
-    const sectionEl = document.getElementById('team');
-    if (sectionEl) {
-      sectionEl.addEventListener('touchstart', handleTouchStart, { passive: true });
-      sectionEl.addEventListener('touchend', handleTouchEnd, { passive: true });
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      if (sectionEl) {
-        sectionEl.removeEventListener('touchstart', handleTouchStart);
-        sectionEl.removeEventListener('touchend', handleTouchEnd);
-      }
-    };
-  }, []);
-
-  const getCardClass = (offset, total) => {
-    if (offset === 0) return 'center';
-    if (offset === 1) return 'right-1';
-    if (offset === 2) return 'right-2';
-    if (offset === total - 1) return 'left-1';
-    if (offset === total - 2) return 'left-2';
-    return 'hidden';
-  };
-
-  const currentMember = teamMembers[displayedIndex] || teamMembers[0];
-
   return (
-    <section id="team" className="team-carousel-section relative w-full py-20 overflow-hidden">
-      {/* Giant Stylized Watermark Background */}
-      <div className="team-watermark-title" aria-hidden="true">
-        OUR TEAM
-      </div>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-6">
-          <p className="text-xs uppercase tracking-widest text-emerald-400 font-semibold mb-2">Talent</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight">
-            Meet Our Team
-          </h2>
-          <p className="mt-2 text-sm text-zinc-400 max-w-lg mx-auto">
-            Visionary leaders, skilled engineers, and creative thinkers driving innovative digital solutions.
-          </p>
-        </div>
-
-        {/* 3D Carousel Stage */}
-        <div className="team-3d-container">
-          <button
-            type="button"
-            className="team-3d-arrow left"
-            onClick={() => updateCarousel(currentIndex - 1)}
-            aria-label="Previous team member"
-          >
-            <ChevronLeft size={24} />
-          </button>
-
-          <div className="team-3d-track">
-            {teamMembers.map((member, i) => {
-              const offset = (i - currentIndex + total) % total;
-              const cls = getCardClass(offset, total);
-              const isCenter = cls === 'center';
-
-              return (
-                <div
-                  key={`${member.name}-${i}`}
-                  className={`team-3d-card ${cls}`}
-                  onClick={() => {
-                    if (isCenter) {
-                      setSelectedMember(member);
-                    } else {
-                      updateCarousel(i);
-                    }
-                  }}
-                  title={isCenter ? `Click to view ${member.name}'s profile` : `View ${member.name}`}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    loading={i < 3 ? 'eager' : 'lazy'}
-                  />
-                  {isCenter && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                      <span className="text-xs uppercase tracking-wider text-emerald-400 font-medium">Click for bio & info</span>
-                      <p className="text-sm font-bold text-white truncate">{member.name}</p>
-                    </div>
-                  )}
-                  {isCenter && (
-                    <div className="absolute top-3 right-3 bg-emerald-500/80 backdrop-blur-md text-zinc-950 p-1 rounded-full shadow-lg">
-                      <CheckCircle2 size={16} className="fill-emerald-400 text-zinc-950" />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <button
-            type="button"
-            className="team-3d-arrow right"
-            onClick={() => updateCarousel(currentIndex + 1)}
-            aria-label="Next team member"
-          >
-            <ChevronRight size={24} />
-          </button>
-        </div>
-
-        {/* Selected Member Info */}
-        <div
-          className="team-3d-info transition-opacity duration-300"
-          style={{ opacity: memberVisible ? 1 : 0 }}
-        >
-          <div className="team-3d-name-container">
-            <span className="team-3d-line-left" aria-hidden="true" />
-            <h3 className="team-3d-name">
-              <span>{currentMember.name}</span>
-              <span className="text-sky-400 shrink-0" title="Verified Member">
-                <CheckCircle2 size={20} className="fill-sky-400 text-zinc-950 inline" />
-              </span>
-            </h3>
-            <span className="team-3d-line-right" aria-hidden="true" />
-          </div>
-
-          <p className="team-3d-role">
-            {currentMember.role}
-          </p>
-
-          <p className="team-3d-bio">
-            {currentMember.description}
-          </p>
-
-          <div className="mt-4 flex items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={() => setSelectedMember(currentMember)}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 hover:border-emerald-500/60 rounded-full transition-all duration-200 shadow-sm"
-            >
-              <span>View Full Profile</span>
-              <ArrowUpRight size={14} />
-            </button>
-          </div>
-        </div>
-
-        {/* Dots Navigation */}
-        <div className="team-3d-dots">
-          {teamMembers.map((member, i) => (
-            <button
-              key={`dot-${member.name}-${i}`}
-              type="button"
-              className={`team-3d-dot${i === currentIndex ? ' active' : ''}`}
-              onClick={() => updateCarousel(i)}
-              aria-label={`Go to ${member.name}`}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Member Full Detail Modal */}
-      {selectedMember && (
-        <div className="team-detail-backdrop" onClick={() => setSelectedMember(null)}>
-          <article className="team-detail-panel" onClick={(event) => event.stopPropagation()}>
-            <button
-              type="button"
-              className="team-detail-close"
-              onClick={() => setSelectedMember(null)}
-              aria-label="Close team member information"
-            >
-              <X size={18} />
-            </button>
-            <div className="team-detail-header">
-              <img src={selectedMember.image} alt={selectedMember.name} className="team-detail-image" />
-              <div>
-                <p className="text-xs uppercase tracking-widest text-emerald-400">Team profile</p>
-                <h3 className="mt-1 text-2xl font-bold text-white">{selectedMember.name}</h3>
-                <p className="mt-1 text-sm font-semibold text-sky-300">{selectedMember.role}</p>
-              </div>
-            </div>
-            <p className="mt-6 text-sm leading-relaxed text-zinc-300">{selectedMember.description}</p>
-          </article>
-        </div>
-      )}
-    </section>
+    <ModernCarousel
+      items={teamMembers}
+      watermarkTitle="OUR TEAM"
+      badge=""
+      heading="Meet Our Team"
+      subtitle=""
+    />
   );
 }
 
@@ -1708,10 +1486,11 @@ const achievementPhotos = [
 
 function AchievementsSection() {
   const [activeAchievement, setActiveAchievement] = useState(0);
-  const activePhoto = activeAchievement % achievementPhotos.length;
+  const visibleAwardCount = Math.min(achievements.length, achievementPhotos.length);
+  const activePhoto = activeAchievement;
 
   const showNextPhoto = () => {
-    setActiveAchievement((currentAchievement) => (currentAchievement + 1) % achievements.length);
+    setActiveAchievement((currentAchievement) => (currentAchievement + 1) % visibleAwardCount);
   };
 
   return (
@@ -1725,9 +1504,9 @@ function AchievementsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(280px,0.8fr)_minmax(0,1.2fr)] gap-8 lg:gap-12 items-start">
+        <div className="awards-feature-layout grid grid-cols-1 gap-8 items-start">
           <figure
-            className="relative rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl lg:sticky lg:top-28"
+            className="relative mx-auto w-full max-w-[460px] rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl lg:sticky lg:top-28"
             role="button"
             tabIndex="0"
             onClick={showNextPhoto}
@@ -1739,7 +1518,7 @@ function AchievementsSection() {
             }}
             aria-label={`Show next achievement photo: ${achievements[activeAchievement].title}`}
           >
-            <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[620px]">
+            <div className="relative h-[340px] w-full sm:h-[400px] lg:h-[460px]">
               {achievementPhotos.map((photo, index) => {
                 if (index === activePhoto) return null;
                 const layerOffset = index > activePhoto ? index - activePhoto : index - activePhoto + achievementPhotos.length;
@@ -1775,38 +1554,6 @@ function AchievementsSection() {
             </figcaption>
           </figure>
 
-          <div className="space-y-3">
-            {achievements.map((achievement, index) => (
-              <article
-                key={achievement.title}
-                className={`achievement-row group border-b border-zinc-800/80 py-4 first:pt-0 last:border-b-0 ${index === activeAchievement ? 'is-active' : ''}`}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-950/40 text-emerald-400">
-                    <span className="text-sm font-semibold">{achievement.icon}</span>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <h3 className="text-xs font-semibold leading-relaxed text-white">{achievement.title}</h3>
-                        <p className="mt-1 text-xs leading-relaxed text-zinc-300">{achievement.description}</p>
-                      </div>
-                      <span className="shrink-0 text-[10px] font-mono-code text-zinc-600">0{index + 1}</span>
-                    </div>
-                    <a
-                      href="https://www.facebook.com/profile.php?id=61587213903017"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-                    >
-                      View Proof
-                      <ExternalLink size={12} />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -2272,7 +2019,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-100 relative font-sans selection:bg-emerald-500/30 selection:text-emerald-300">
+    <div className="min-h-screen bg-transparent text-zinc-100 relative isolate font-sans selection:bg-emerald-500/30 selection:text-emerald-300">
+      <BackgroundBoxes />
       {/* Splash Screen on load */}
       <SplashScreen />
 
@@ -2334,4 +2082,9 @@ export default function App() {
   );
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Missing React root element');
+
+const root = import.meta.hot?.data.root ?? createRoot(rootElement);
+root.render(<App />);
+if (import.meta.hot) import.meta.hot.data.root = root;

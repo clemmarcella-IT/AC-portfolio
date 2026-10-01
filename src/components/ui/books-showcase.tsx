@@ -1337,8 +1337,6 @@ export function BooksShowcase({
       }
     }
 
-    const timer = new THREE.Timer();
-    timer.connect(document);
     const idle = RM ? 0 : 1;
     const DETAIL_OPEN_ANGLE = 0.88;
     const DETAIL_OPEN_SWAY = 0.035;
@@ -1463,6 +1461,8 @@ export function BooksShowcase({
     let rafId = 0;
     let isInViewport = true;
     let lastFrameTime = 0;
+    let previousFrameTimestamp = performance.now();
+    let elapsedTime = 0;
     const frameInterval = 1000 / (lowPowerDevice ? 20 : 30);
     function animate(timestamp = performance.now()) {
       if (cancelled || !isInViewport || document.hidden) {
@@ -1472,9 +1472,11 @@ export function BooksShowcase({
       rafId = requestAnimationFrame(animate);
       if (timestamp - lastFrameTime < frameInterval) return;
       lastFrameTime = timestamp;
-      timer.update(timestamp);
-      const dt = Math.min(timer.getDelta(), 0.05);
-      const t = timer.getElapsed();
+      const frameDelta = Math.max(0, (timestamp - previousFrameTimestamp) / 1000);
+      previousFrameTimestamp = timestamp;
+      elapsedTime += frameDelta;
+      const dt = Math.min(frameDelta, 0.05);
+      const t = elapsedTime;
 
       if (ptr.seen && (ptr.type === 'mouse' || ptr.down)) castRay();
       let hov: Book | null = null;
@@ -1612,7 +1614,6 @@ export function BooksShowcase({
 
       visibilityObserver.disconnect();
       document.removeEventListener('visibilitychange', onVisibilityChange);
-      timer.dispose();
       ro.disconnect();
       window.removeEventListener('resize', onWindowResize);
       window.removeEventListener('orientationchange', onOrientation);
