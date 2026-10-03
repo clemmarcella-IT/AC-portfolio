@@ -8,9 +8,12 @@
   display: none;
 }
 
-#team .team-watermark-title,
-#team .text-center.mb-6 > h2 {
+#team .team-watermark-title {
   display: block;
+}
+
+#team .text-center.mb-6 > h2 {
+  display: none;
 }
 
 .team-profile-actions {
